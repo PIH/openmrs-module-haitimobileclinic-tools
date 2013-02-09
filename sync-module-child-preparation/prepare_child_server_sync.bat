@@ -49,20 +49,20 @@ cls
 echo.
 echo Starting remote server preparation
 echo Step 1/7: Stopping OpenMRS localhost
-
 rem clear sync records =======================================================
 echo Step 2/7: Clear sync records on parent server
-plink -i %SSH_PPK% -P %SSH_PORT% %SSH_USER%@%SSH_SERVER% "mysql -u openmrs -ppa55ionFruit openmrs -e 'delete from sync_server_record; delete from sync_record; delete from sync_import;' "
+psexec \\%OPENMRS_SERVER% -u Administrator -p root mysql -u root -proot openmrs -e "delete from sync_server_record; delete from sync_record; delete from sync_import;"
 
 rem dump parent DB ===========================================================
 echo Step 3/7: Dump parent db on parent server
-plink -i %SSH_PPK% -P %SSH_PORT% %SSH_USER%@%SSH_SERVER% "test -e /tmp/sync-preparation-%HOSTNAME%.sql || mysqldump -u openmrs -ppa55ionFruit openmrs -q -e --single-transaction --ignore-table=openmrs.global_property --ignore-table=openmrs.sync_class --ignore-table=openmrs.sync_server --ignore-table=openmrs.sync_server_class > /tmp/sync-preparation-%HOSTNAME%.sql"
+psexec \\%OPENMRS_SERVER% -u Administrator -p root mysqldump -u root -proot openmrs  -q -e --single-transaction --ignore-table=openmrs.global_property --ignore-table=openmrs.sync_class --ignore-table=openmrs.sync_server --ignore-table=openmrs.sync_server_class --result-file="c:\Documents and Settings\Administrator\Application Data\OpenMRS\database-dump\sync-preparation-%HOSTNAME%.sql"
 
 rem copy to child ====================================================
 echo Step 4/7: Copy db from parent server (without progress indication)
 rem : copy uncompressed dump via rsync, try x times to get the file
+cd %OPENMRS_HOME%\database-dump
 FOR %%i IN (1 2 3 4 5) DO (
-  rsync --quiet -rltDyzP --partial --delete %OPENMRS_PARENT%::database-dump/sync-preparation-%HOSTNAME%.sql sync-preparation-%HOSTNAME%.sql
+  rsync --quiet -rltDyzP --partial --delete 192.168.1.22::database-dump/sync-preparation-%HOSTNAME%.sql .
   IF "%ERRORLEVEL%" == "0" GOTO IMPORT
 )
 : error rsyncing file, print message and stop
@@ -78,11 +78,12 @@ exit 1
 :IMPORT
 rem copy modules =============================================================
 echo Step 5/7: Copy new modules from parent server
-rsync --quiet -rltDyzP --partial --delete %OPENMRS_PARENT%::modules sync-preparation-%HOSTNAME%.sql "%OPENMRS_HOME_RSYNC%/modules"
+cd %OPENMRS_HOME%\modules
+rsync --quiet -rltDyzP --partial --delete 192.168.1.22::modules .
 
 rem import file ==============================================================
 echo Step 6/7: Import db to localhost
-mysql -u root -proot openmrs < sync-preparation-%HOSTNAME%.sql
+mysql -u root -proot openmrs < "%OPENMRS_HOME%\database-dump\sync-preparation-%HOSTNAME%.sql"
 IF "%ERRORLEVEL%" == "0" GOTO OK
 
 echo ERROR during sync preparation >> %LOGFILE%
@@ -96,7 +97,7 @@ exit 1
 
 rem cleanup ==================================================================
 echo Step 7/7: Clean up
-plink -i %SSH_PPK% -P %SSH_PORT% %SSH_USER%@%SSH_SERVER% "rm /tmp/sync-preparation-%HOSTNAME%.*"
+psexec \\%OPENMRS_SERVER% -u Administrator -p root cmd /c del "c:\Documents and Settings\Administrator\Application Data\OpenMRS\database-dump\sync-preparation-%HOSTNAME%.sql"
 rem Not sure, but it seems like Tomcat shutdown is not able to remove webapp temps, DIY as I fear there might be some drawbacks
 rd /q /s %TOMCAT_HOME%\temp\* 2>NUL
 
