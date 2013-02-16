@@ -1,0 +1,157 @@
+<htmlform>
+<!-- Full reference for HTML Forms at http://wiki.openmrs.org/x/kg8z -->
+	<macros>
+		paperFormId = (Fill this in)
+		headerColor =#009d8e
+		fontOnHeaderColor = white
+	</macros>
+
+	<style>
+		.section {
+		border: 1px solid $headerColor;
+		padding: 2px;
+		text-align: left;
+		margin-bottom: 1em;
+		}
+		.sectionHeader {
+		background-color: $headerColor;
+		color: $fontOnHeaderColor;
+		display: block;
+		padding: 2px;
+		font-weight: bold;
+		}
+		table.baseline-aligned td {
+		vertical-align: baseline;
+		}
+	</style>
+
+	<span style="float:right">v1.0 (14-JANUARY 2013)</span>
+	<h2>Mobile Clinic Consultation Form</h2>
+
+	<section headerLabel="Patient Demographics">
+		<table class="baseline-aligned">
+			<tr>
+				<td>ZL EMR ID:</td>
+				<td>
+					<lookup class="value"
+						complexExpression="#foreach( $patId in $patientIdentifiers.get('ZL EMR ID') ) $patId #end " />
+				</td>
+				<td>Dossier Number:</td>
+				<td>
+					<lookup class="value"
+						complexExpression="#foreach( $patId in $patientIdentifiers.get('Nimewo Dosye') ) $patId #end " />
+				</td>
+			</tr>
+			<tr>
+				<td>Name:</td>
+				<td>
+					<lookup class="value" expression="patient.personName" />
+				</td>
+			</tr>
+			<tr>
+				<td>Lokalitie:</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Gender:</td>
+				<td>
+					<lookup class="value" expression="patient.gender" />
+				</td>
+			</tr>
+		</table>
+	</section>
+
+	<section headerLabel="Visit Details">
+		<table class="baseline-aligned">
+			<tr>
+				<td>Date:</td>
+				<td>
+					<encounterDate default="today" />
+				</td>
+				<td>Location:</td>
+				<td>
+					<encounterLocation />
+					(Use
+					<a href="/openmrs/options.form">'My Profile' - 'Default location'</a>
+					to change default location)
+				</td>
+			</tr>
+		</table>
+	</section>
+
+	<section headerLabel="Clinical Impression">
+		<table class="baseline-aligned">
+			<tr>
+				<td>Pregnant (only female):</td>
+				<td><obs conceptId="6744" style="radio"/></td>
+			</tr>
+			<tr>
+				<td>Diagnosis:</td>
+				<td><obs conceptId="6542" /></td>
+			</tr>
+			<tr>
+				<td>Provider:</td>
+				<td>
+					<encounterProvider />
+				</td>
+			</tr>
+		</table>
+	</section>
+
+	<section headerLabel="Depistage TB">
+		<table class="baseline-aligned">
+			<tr>
+				<td><obs conceptId="6744" labelNameTag="default" style="radio"/></td>
+			</tr>
+			<tr>
+				<td><obs conceptId="6745" labelNameTag="default" style="radio"/></td>
+			</tr>
+			<tr>
+				<td><obs conceptId="6746" labelNameTag="default" style="radio"/></td>
+			</tr>
+			<tr>
+				<td><obs conceptId="6747" labelNameTag="default" style="radio"/></td>
+			</tr>
+			<tr>
+				<td><obs conceptId="6748" labelNameTag="default" style="radio"/></td>
+			</tr>
+		</table>
+	</section>
+
+	<section headerLabel="Depistage VIH">
+		<table class="baseline-aligned">
+			<tr>
+				<td>HIV Test:</td>
+				<td><obs conceptId="6762" style="radio"/></td>
+			</tr>
+			<tr>
+				<td>Result, if tested:</td>
+				<td><obs conceptId="3753" style="radio"/></td>
+			</tr>
+		</table>
+	</section>
+
+	<section headerLabel="Supplemental questions">
+		<table class="baseline-aligned">
+			<tr>
+				<td><obs conceptId="6749" labelNameTag="default" style="radio"/></td>
+			</tr>
+			<tr>
+				<td><obs conceptId="6766" labelNameTag="default" style="radio"/> (for children under age 6)</td>
+			</tr>
+		</table>
+	</section>
+
+	<section headerLabel="Referral">
+		<table class="baseline-aligned">
+			<tr>
+				<td><obs conceptId="6750" labelNameTag="default" style="radio"/></td>
+			</tr>
+			<tr>
+				<td><obs conceptId="6760" labelNameTag="default" style="radio"/></td>
+			</tr>
+		</table>
+	</section>
+
+	<submit />
+</htmlform>
