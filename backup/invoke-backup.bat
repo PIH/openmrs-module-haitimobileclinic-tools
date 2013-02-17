@@ -1,14 +1,28 @@
-rem @echo off
+@echo off
 
 set LOGFILE=backup.log
 set HOSTNAME=%COMPUTERNAME%
 set BACKUP-DIR=emr-backup-%HOSTNAME%
-set TOMCAT_HOME=C:\Documents and Settings\Administrator\Application Data\OpenMRS\apache-tomcat-6.0.36
+set EMR_HOME=C:\Documents and Settings\Administrator\Application Data\OpenMRS
+set TOMCAT_HOME=%EMR_HOME%\apache-tomcat-6.0.36
 
 echo.
 echo Starting EMR backup. Please connect USB flash drive.
 set /p BACKUP-DRIVE="Enter drive letter of USB flash drive: " %=%
 set BACKUP-PATH=%BACKUP-DRIVE%:\%BACKUP-DIR%
+
+IF exist %BACKUP-DRIVE%:\ goto BACKUP
+
+echo.
+echo Could not access path %BACKUP-PATH%. 
+echo.
+echo Reconnect USB flash drive and specify the correct drive letter. Exiting now.
+echo.
+pause
+goto END
+
+:BACKUP
+
 echo.
 echo About to start EMR backup to %BACKUP-PATH%
 echo.
@@ -17,50 +31,52 @@ echo.
 pause
 echo.
 
-IF exist %BACKUP-PATH% goto BACKUP
-
-echo.
-echo Could not access path %BACKUP-PATH%. 
-echo Reconnect USB flash drive and make sure you have specified the correct drive letter. Exiting now.
-echo.
-pause
-goto END
-
-:BACKUP
-
 echo ------- >> %LOGFILE%
 echo Sync preparation started >> %LOGFILE%
 date /t >> %LOGFILE%
 time /t >> %LOGFILE%
 
-echo Step : Delete old backups
-
-echo Step : Stop OpenMRS localhost
+echo Step 1: Stop OpenMRS localhost
 set PWD=%CD%
-cd %TOMCAT_HOME%\bin 2>NUL
+cd "%TOMCAT_HOME%\bin" 2>NUL
 call shutdown.bat
 cd /d %PWD%
-rem cls
+cls
 
-echo Step : Dump database
+echo Step 1: Stop OpenMRS localhost
 
-echo Step : Compress and encrypt database
+echo Step 2: Delete old backups
+rd /q /s "%BACKUP-PATH%" 2>NUL
+mkdir "%BACKUP-PATH%"
 
-echo Step : Copy database to flash
+echo Step 3: Dump database
+mysqldump -u root -proot openmrs > openmrs.sql
 
-echo Step : Cleanup
-rem Apache, dump files, ...
-rd /q /s %TOMCAT_HOME%\temp\* 2>NUL
-rd /q /s %TOMCAT_HOME%\work\* 2>NUL
-rd /q /s ..\..\database-dump\* 2>NUL
+echo Step 4: Compress and encrypt database
+7za a -proot database-dump.zip openmrs.sql >NUL
 
-echo Step : Copy runtime environment to flash
+echo Step 5: Copy database to flash
+copy database-dump.zip "%BACKUP-PATH%" >NUL
 
+echo Step 6: Cleanup
+rem Apache temp stuff, dump files, ...
+rd /q /s "%TOMCAT_HOME%\temp" 2>NUL
+mkdir "%TOMCAT_HOME%\temp"
+rd /q /s "%TOMCAT_HOME%\work" 2>NUL
+mkdir "%TOMCAT_HOME%\work"
+rd /q /s "%TOMCAT_HOME%\webapps\openmrs" 2>NUL
+rd /q /s "..\..\database-dump" 2>NUL
+mkdir "..\..\database-dump"
+del openmrs.sql
+del database-dump.zip
+
+echo Step 7: Copy runtime environment to flash
+xcopy /e /c /q /y "%EMR_HOME%" "%BACKUP-PATH%" >NUL
 
 echo.
-echo Backup finished
+echo Backup finished, unmount and unplug the USB flash drive now.
 echo.
-echo MAKE THAT THAT THERE ARE NO ADDITIONAL ERRORS INDICATED ABOVE!
+echo MAKE SURE THAT THERE ARE NO ADDITIONAL ERRORS INDICATED ABOVE!
 echo.
 pause
 
