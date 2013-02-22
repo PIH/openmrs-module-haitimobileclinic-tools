@@ -1,0 +1,13 @@
+Reusing SQL Data Set Definitions
+
+USER=root
+PASSWD=xian
+OPENMRS=openmrs_zanmi
+
+# SqlDataSetDefinitions
+mysqldump -u $USER -p$PASSWD $OPENMRS --no-create-db --no-create-info --tables serialized_object --where='uuid in ("f5807779-8436-4369-93af-42cd464464f5", "fa4fc4a1-93c6-48ab-90ed-f069e5e463c7", "b1b3c4a7-a7e4-4e4b-bf0b-cb1aea039cad", "a65e9b9f-cb2b-4128-aefd-1efcc3a6e758", "254fbbbf-6e9f-49aa-a3ec-8c5b042cde82", "5035935f-3b7e-448e-8b36-c07246a04166")' > /tmp/dump_report_mspp_datasets.sql
+
+# Duplicate MSPP report definition and change encounter_type to mobile clinic consultation
+mysqldump -u $USER -p$PASSWD $OPENMRS --no-create-db --no-create-info --tables serialized_object --where='uuid in ("c276f95e-32bc-4b4e-8409-95efe8b24674")'  | sed 's/<encounterType id=\\\"12\\\" uuid=\\\"1373cf95-06e8-468b-a3da-360ac1cf026d\\\"\/>/<encounterType id=\\\"19\\\" uuid=\\\"fec6f3ed-6a3c-4c47-8982-a28f96befb5b\\\"\/>/g' | sed 's/<encounterType reference=\\\"12\\\"\/>/<encounterType id=\\\"19\\\" uuid=\\\"fec6f3ed-6a3c-4c47-8982-a28f96befb5b\\\"\/>/g' | sed 's/c276f95e-32bc-4b4e-8409-95efe8b24674/dc913921-99ec-4ccb-8d36-f575df3c319c/g' | sed 's/MSPP Monthly health services report/Mobile Clinic MSPP Monthly health services report/g' | sed 's/MSPP Monthly health services report/Mobile Clinic MSPP Monthly health services report/g' | sed 's/<creator id=\\\"[0-9]\{1,6\}\\\" uuid=\\\".\{36\}\\\"\/>//g' | sed 's/<changedBy id=\\\"[0-9]\{1,6\}\\\" uuid=\\\".\{36\}\\\"\/>//g' | sed 's/<changedBy reference=\\\"[0-9]\{1,6\}\\\"\/>//g' > /tmp/dump_report_mspp.sql
+
+
