@@ -86,12 +86,29 @@
 				<td><obs conceptId="6744" style="radio"/></td>
 			</tr>
 			<tr>
-				<td>Diagnosis:</td>
+				<td>Diagnosis</td>
+				<td>Coded:</td>
 				<td><obs conceptId="6542" /></td>
+				<td>Uncoded:</td>
+				<td><obs conceptId="6543" /></td>
+			</tr>
+			<tr>
+				<td/>
+				<td/>
+				<td><obs conceptId="6542" /></td>
+				<td/>
+				<td><obs conceptId="6543" /></td>
+			</tr>
+			<tr>
+				<td/>
+				<td/>
+				<td><obs conceptId="6542" /></td>
+				<td/>
+				<td><obs conceptId="6543" /></td>
 			</tr>
 			<tr>
 				<td>Provider:</td>
-				<td>
+				<td colspan="2">
 					<encounterProvider />
 				</td>
 			</tr>

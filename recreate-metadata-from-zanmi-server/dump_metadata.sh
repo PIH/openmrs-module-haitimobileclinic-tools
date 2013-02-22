@@ -15,9 +15,15 @@ mysqldump -u $USER -p$PASSWD $OPENMRS -r /tmp/dump_locations.sql --tables locati
 mysqldump -u $USER -p$PASSWD $OPENMRS -r /tmp/dump_div.sql --tables patient_identifier_type person_attribute_type program program_workflow program_workflow_state encounter_type order_type relationship_type provider_attribute_type provider_attribute reporting_report_design reporting_report_design_resource serialized_object visit_attribute_type visit_type role role_role role_privilege privilege 
 
 mysqldump -u $USER -p$PASSWD $OPENMRS -r /tmp/dump_reports.sql --tables reporting_report_design reporting_report_design_resource serialized_object
-sed 's/<creator id=\\\"[0-9]\{1,6\}\\\" uuid=\\\".\{36\}\\\"/<creator id=\\\"1\\\" uuid=\\\"5fbd8100-6f68-11e2-afaa-82871dfc9909\\\"/g' /tmp/dump_reports.sql > /tmp/dump_reports_cleaned1.sql
-sed 's/<changedBy id=\\\"[0-9]\{1,6\}\\\" uuid=\\\".\{36\}\\\"/<changedBy id=\\\"1\\\" uuid=\\\"5fbd8100-6f68-11e2-afaa-82871dfc9909\\\"/g' /tmp/dump_reports_cleaned1.sql > /tmp/dump_reports_cleaned2.sql
-sed 's/<changedBy reference=\\\"[0-9]\{1,6\}\\\"/<changedBy reference=\\\"1\\\"/g' /tmp/dump_reports_cleaned2.sql > /tmp/dump_reports_cleaned3.sql
+
+# remove all creator and changed by info
+#sed 's/<creator id=\\\"[0-9]\{1,6\}\\\" uuid=\\\".\{36\}\\\"\/>//g' /tmp/dump_reports.sql > /tmp/dump_reports_cleaned1.sql
+#sed 's/<changedBy id=\\\"[0-9]\{1,6\}\\\" uuid=\\\".\{36\}\\\"\/>//g' /tmp/dump_reports_cleaned1.sql > /tmp/dump_reports_cleaned2.sql
+#sed 's/<changedBy reference=\\\"[0-9]\{1,6\}\\\"\/>//g' /tmp/dump_reports_cleaned2.sql > /tmp/dump_reports_cleaned3.sql
+# unsuccessful attempt to change creator and changed by info to default admin
+#sed 's/<creator id=\\\"[0-9]\{1,6\}\\\" uuid=\\\".\{36\}\\\"/<creator id=\\\"1\\\" uuid=\\\"5fbd8100-6f68-11e2-afaa-82871dfc9909\\\"/g' /tmp/dump_reports.sql > /tmp/dump_reports_cleaned1.sql
+#sed 's/<changedBy id=\\\"[0-9]\{1,6\}\\\" uuid=\\\".\{36\}\\\"/<changedBy id=\\\"1\\\" uuid=\\\"5fbd8100-6f68-11e2-afaa-82871dfc9909\\\"/g' /tmp/dump_reports_cleaned1.sql > /tmp/dump_reports_cleaned2.sql
+#sed 's/<changedBy reference=\\\"[0-9]\{1,6\}\\\"/<changedBy reference=\\\"1\\\"/g' /tmp/dump_reports_cleaned2.sql > /tmp/dump_reports_cleaned3.sql
 
 # mysqldump -u $USER -p$PASSWD $OPENMRS -r /tmp/dump_users.sql --tables users
 
