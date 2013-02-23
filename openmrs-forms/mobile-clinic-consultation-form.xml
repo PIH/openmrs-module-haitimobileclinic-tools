@@ -228,7 +228,17 @@
 				<td><obs conceptId="6750" labelNameTag="default" style="radio"/></td>
 			</tr>
 			<tr>
-				<td><obs conceptId="6760" labelNameTag="default" style="radio"/></td>
+				<td>
+					<obs conceptId="6760" style="checkbox" answerConceptId="6751" />
+					<obs conceptId="6760" style="checkbox" answerConceptId="6752" />
+					<obs conceptId="6760" style="checkbox" answerConceptId="6753" />
+					<obs conceptId="6760" style="checkbox" answerConceptId="6754" />
+					<obs conceptId="6760" style="checkbox" answerConceptId="6755" />
+					<obs conceptId="6760" style="checkbox" answerConceptId="6756" />
+					<obs conceptId="6760" style="checkbox" answerConceptId="6757" />
+					<obs conceptId="6760" style="checkbox" answerConceptId="6758" />
+					<obs conceptId="6760" style="checkbox" answerConceptId="6759" />
+				</td>
 			</tr>
 		</table>
 	</section>
