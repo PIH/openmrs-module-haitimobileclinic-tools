@@ -61,14 +61,14 @@
 		});
 		
 		$j(document).ready(function(){
-			$j('#sessionChwName1 input').attr('disabled', 'true');
-			$j('#sessionChwName2 input').attr('disabled', 'true');
-			$j('#sessionChwName3 input').attr('disabled', 'true');
-			$j('#sessionNecName input').attr('disabled', 'true');
-			$j('#sessionLocation input').attr('disabled', 'true');
-			$j('#sessionCoordinates input').attr('disabled', 'true');
-			$j('#encounterDate input').attr('disabled', 'true');
-			$j('#encounterLocation select').attr('disabled', 'true');
+			$j('#sessionChwName1 input').attr('readonly', 'true');
+			$j('#sessionChwName2 input').attr('readonly', 'true');
+			$j('#sessionChwName3 input').attr('readonly', 'true');
+			$j('#sessionNecName input').attr('readonly', 'true');
+			$j('#sessionLocation input').attr('readonly', 'true');
+			$j('#sessionCoordinates input').attr('readonly', true);
+//			$j('#encounterDate input').attr('readonly', 'true');
+//			$j('#encounterLocation select').attr('readonly', 'true');
 		});
 	</script>
 
