@@ -8,27 +8,75 @@
 
 	<style>
 		.section {
-		border: 1px solid $headerColor;
-		padding: 2px;
-		text-align: left;
-		margin-bottom: 1em;
+			border: 1px solid $headerColor;
+			padding: 2px;
+			text-align: left;
+			margin-bottom: 1em;
 		}
 		.sectionHeader {
-		background-color: $headerColor;
-		color: $fontOnHeaderColor;
-		display: block;
-		padding: 2px;
-		font-weight: bold;
+			background-color: $headerColor;
+			color: $fontOnHeaderColor;
+			display: block;
+			padding: 2px;
+			font-weight: bold;
 		}
 		table.baseline-aligned td {
-		vertical-align: baseline;
+			vertical-align: baseline;
 		}
 	</style>
 
+	<script type="text/javascript">
+		function getSessionDate() {
+		   return "<lookup expression="session.httpSession.getAttribute('sessionDate')" />";
+		}
+		function getSessionCoordinates() {
+		   return "<lookup expression="session.httpSession.getAttribute('sessionCoordinates')" />";
+		}
+		function getSessionChwName1() {
+		   return "<lookup expression="session.httpSession.getAttribute('sessionChwName1')" />";
+		}
+		function getSessionChwName2() {
+		   return "<lookup expression="session.httpSession.getAttribute('sessionChwName2')" />";
+		}
+		function getSessionChwName3() {
+		   return "<lookup expression="session.httpSession.getAttribute('sessionChwName3')" />";
+		}
+		function getSessionNecName() {
+		   return "<lookup expression="session.httpSession.getAttribute('sessionNecName')" />";
+		}
+		function getSessionLocation() {
+		   return "<lookup expression="session.httpSession.getAttribute('sessionLocation')" />";
+		}
+		
+		$j(function() {
+			<includeIf velocityTest="$context.getMode()=='ENTER' ">
+				setValue('sessionLocation.value', getSessionLocation());
+				setValue('sessionCoordinates.value', getSessionCoordinates());
+				setValue('sessionNecName.value', getSessionNecName());
+				setValue('sessionChwName1.value', getSessionChwName1());
+				setValue('sessionChwName2.value', getSessionChwName2());
+				setValue('sessionChwName3.value', getSessionChwName3());
+				setValue('encounterDate.value', getSessionDate());
+			</includeIf> 
+		});
+		
+		$j(document).ready(function(){
+			$j('#sessionChwName1 input').attr('disabled', 'true');
+			$j('#sessionChwName2 input').attr('disabled', 'true');
+			$j('#sessionChwName3 input').attr('disabled', 'true');
+			$j('#sessionNecName input').attr('disabled', 'true');
+			$j('#sessionLocation input').attr('disabled', 'true');
+			$j('#sessionCoordinates input').attr('disabled', 'true');
+			$j('#encounterDate input').attr('disabled', 'true');
+			$j('#encounterLocation select').attr('disabled', 'true');
+		});
+	</script>
+
 	<span style="float:right">v1.0 (14-JANUARY 2013)</span>
+
 	<h2>Mobile Clinic Consultation Form</h2>
 
-	<section headerLabel="Patient Demographics">
+	<section headerLabel="Patient Demographics (readonly, change here)">
 		<table class="baseline-aligned">
 			<tr>
 				<td>ZL EMR ID:</td>
@@ -61,20 +109,35 @@
 		</table>
 	</section>
 
-	<section headerLabel="Visit Details">
+
+	<section headerLabel="Visit Details (readonly, change here)">
 		<table class="baseline-aligned">
 			<tr>
 				<td>Date:</td>
 				<td>
-					<encounterDate default="today" />
+					<encounterDate id="encounterDate"/>
 				</td>
 				<td>Location:</td>
-				<td>
-					<encounterLocation />
-					(Use
-					<a href="/openmrs/options.form">'My Profile' - 'Default location'</a>
-					to change default location)
+				<td colspan="5">
+					<encounterLocation id="encounterLocation"/>
+					(Use <a href="/openmrs/options.form">'My Profile' - 'Default location'</a> to change default location)
 				</td>
+			</tr>
+			<tr>
+				<td>Clinic location:</td>
+				<td><obs conceptId="6767" id="sessionLocation" /></td>
+				<td>GPS coordinates :</td>
+				<td><obs conceptId="6772" id="sessionCoordinates"/></td>
+			</tr>
+			<tr>
+				<td>NEC name:</td>
+				<td><obs conceptId="6769" id="sessionNecName"/></td>
+				<td>CHW name 1:</td>
+				<td><obs conceptId="6768" id="sessionChwName1"/></td>
+				<td>CHW name 2:</td>
+				<td><obs conceptId="6770" id="sessionChwName2"/></td>
+				<td>CHW name 3:</td>
+				<td><obs conceptId="6771" id="sessionChwName3"/></td>
 			</tr>
 		</table>
 	</section>
