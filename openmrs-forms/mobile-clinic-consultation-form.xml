@@ -109,7 +109,6 @@
 		</table>
 	</section>
 
-
 	<section headerLabel="Visit Details (readonly, change here)">
 		<table class="baseline-aligned">
 			<tr>
@@ -146,7 +145,18 @@
 		<table class="baseline-aligned">
 			<tr>
 				<td>Pregnant (only female):</td>
-				<td><obs conceptId="6744" style="radio"/></td>
+				<td>
+					<span id="pregnant"><obs conceptId="6744" style="radio"/></span>
+					<includeIf velocityTest="$patient.gender!='F' ">
+						<script>
+							$j(function() {
+								$j('#pregnant').find(':input').each(function(){
+								    $j(this).attr('disabled', 'disabled');
+								});
+							});
+						</script>
+					</includeIf>					
+				</td>
 			</tr>
 			<tr>
 				<td>Diagnosis</td>
@@ -202,11 +212,35 @@
 		<table class="baseline-aligned">
 			<tr>
 				<td>HIV Test:</td>
-				<td><obs conceptId="6762" style="radio"/></td>
+				<td>
+					<obs conceptId="6762" style="radio" id="hivTest"/>
+					<script>
+						$j(function() {
+							$j('#hivTest').find(':input').each(function(){
+							  $j(this).change(function(){
+							      if (getValue('hivTest.value') == '1065') {
+							      $j('#hivResult').find(':input').each(function(){
+							        $j(this).removeAttr('disabled');
+							      });
+							    } else {
+							      $j('#hivResult').find(':input').each(function(){
+							        // uncheck everything as disabled fields are not send via forms 
+									// and therefore might lead to confusion if the checkbox is checked, but disabled
+							        $j(this).attr('checked', false);
+							        $j(this).attr('disabled', 'disabled');
+							      });
+							    }
+							  });
+							})
+						});
+					</script>
+				</td>
 			</tr>
 			<tr>
 				<td>Result, if tested:</td>
-				<td><obs conceptId="3753" style="radio"/></td>
+				<td>
+					<span id="hivResult"><obs conceptId="3753" style="radio"/></span>
+				</td>
 			</tr>
 		</table>
 	</section>
@@ -225,19 +259,50 @@
 	<section headerLabel="Referral">
 		<table class="baseline-aligned">
 			<tr>
-				<td><obs conceptId="6750" labelNameTag="default" style="radio"/></td>
+				<td>
+					<obs id="referred" conceptId="6750" labelNameTag="default" style="radio"/>
+					<script>
+						$j(function() {
+							// couldn't get HFE support for change events of radio buttons to work, DIY
+							//	    getField('referred.value').change(function() {
+							//	        window.alert('Value is ' + getValue('referred.value'));
+							//	    });
+							// still doesn't as it should, but the best I could do...
+							// first, readonly for checkboxes seems not existing in HTML, 
+							// second: deselecting the YES value by clicking twice on it doesn't invoke a change event
+							$j('#referred').find(':input').each(function(){
+							  $j(this).change(function(){
+							      if (getValue('referred.value') == '1065') {
+							      $j('#referralReason').find(':input').each(function(){
+							        $j(this).removeAttr('disabled');
+							      });
+							    } else {
+							      $j('#referralReason').find(':input').each(function(){
+							        // uncheck everything as disabled fields are not send via forms 
+									// and therefore might lead to confusion if the checkbox is checked, but disabled
+							        $j(this).attr('checked', false);
+							        $j(this).attr('disabled', 'disabled');
+							      });
+							    }
+							  });
+							})
+						});
+					</script>
+				</td>
 			</tr>
 			<tr>
 				<td>
-					<obs conceptId="6760" style="checkbox" answerConceptId="6751" />
-					<obs conceptId="6760" style="checkbox" answerConceptId="6752" />
-					<obs conceptId="6760" style="checkbox" answerConceptId="6753" />
-					<obs conceptId="6760" style="checkbox" answerConceptId="6754" />
-					<obs conceptId="6760" style="checkbox" answerConceptId="6755" />
-					<obs conceptId="6760" style="checkbox" answerConceptId="6756" />
-					<obs conceptId="6760" style="checkbox" answerConceptId="6757" />
-					<obs conceptId="6760" style="checkbox" answerConceptId="6758" />
-					<obs conceptId="6760" style="checkbox" answerConceptId="6759" />
+					<span id='referralReason'>
+						<obs conceptId="6760" style="checkbox" answerConceptId="6751" />
+						<obs conceptId="6760" style="checkbox" answerConceptId="6752" />
+						<obs conceptId="6760" style="checkbox" answerConceptId="6753" />
+						<obs conceptId="6760" style="checkbox" answerConceptId="6754" />
+						<obs conceptId="6760" style="checkbox" answerConceptId="6755" />
+						<obs conceptId="6760" style="checkbox" answerConceptId="6756" />
+						<obs conceptId="6760" style="checkbox" answerConceptId="6757" />
+						<obs conceptId="6760" style="checkbox" answerConceptId="6758" />
+						<obs conceptId="6760" style="checkbox" answerConceptId="6759" />
+					</span>
 				</td>
 			</tr>
 		</table>
