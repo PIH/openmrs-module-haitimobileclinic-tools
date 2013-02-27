@@ -57,6 +57,7 @@
 				setValue('sessionChwName2.value', getSessionChwName2());
 				setValue('sessionChwName3.value', getSessionChwName3());
 				setValue('encounterDate.value', getSessionDate());
+setValue('encounterProvider.value', 3);
 			</includeIf> 
 		});
 		
@@ -68,7 +69,14 @@
 			$j('#sessionLocation input').attr('readonly', 'true');
 			$j('#sessionCoordinates input').attr('readonly', true);
 //			$j('#encounterDate input').attr('readonly', 'true');
-//			$j('#encounterLocation select').attr('readonly', 'true');
+			
+			// there is no readonly in HTML for select fields, but disabling it will prevent the form from submitting any value
+			// therefore remove every entry except the pre-selected one (which should be already set from a the user profile default location)
+			$j("#encounterLocation select option").not("option:selected").remove();
+
+			// set proper initial state for dependent fields
+			clickOrChangeInHivTest();
+			clickOrChangeInReferred();
 		});
 	</script>
 
@@ -109,18 +117,13 @@
 		</table>
 	</section>
 
-	<section headerLabel="Visit Details (readonly, change here)">
+	<section headerLabel="Clinic Day Details (readonly, change here)">
 		<table class="baseline-aligned">
 			<tr>
 				<td>Date:</td>
-				<td>
-					<encounterDate id="encounterDate"/>
-				</td>
+				<td><encounterDate id="encounterDate" disallowMultipleEncountersOnDate="warn"/></td>
 				<td>Location:</td>
-				<td colspan="5">
-					<encounterLocation id="encounterLocation"/>
-					(Use <a href="/openmrs/options.form">'My Profile' - 'Default location'</a> to change default location)
-				</td>
+				<td colspan="5"><encounterLocation id="encounterLocation" default="GlobalProperty:default_location"/></td>
 			</tr>
 			<tr>
 				<td>Clinic location:</td>
@@ -182,7 +185,7 @@
 			<tr>
 				<td>Provider:</td>
 				<td colspan="2">
-					<encounterProvider />
+					<encounterProvider id="encounterProvider"/>
 				</td>
 			</tr>
 		</table>
@@ -215,21 +218,27 @@
 				<td>
 					<obs conceptId="6762" style="radio" id="hivTest"/>
 					<script>
-						$j(function() {
-							$j('#hivTest').find(':input').each(function(){
-							  $j(this).change(function(){
-							      if (getValue('hivTest.value') == '1065') {
+						function clickOrChangeInHivTest() {
+							if (getValue('hivTest.value') == '1065') {
 							      $j('#hivResult').find(':input').each(function(){
 							        $j(this).removeAttr('disabled');
 							      });
-							    } else {
+						    } else {
 							      $j('#hivResult').find(':input').each(function(){
 							        // uncheck everything as disabled fields are not send via forms 
 									// and therefore might lead to confusion if the checkbox is checked, but disabled
 							        $j(this).attr('checked', false);
 							        $j(this).attr('disabled', 'disabled');
 							      });
-							    }
+							}
+						}
+						$j(function() {
+							$j('#hivTest').find(':input').each(function(){
+							  $j(this).change(function(){
+								clickOrChangeInHivTest();
+							  });
+							  $j(this).click(function(){
+								clickOrChangeInHivTest();
 							  });
 							})
 						});
@@ -262,6 +271,20 @@
 				<td>
 					<obs id="referred" conceptId="6750" labelNameTag="default" style="radio"/>
 					<script>
+						function clickOrChangeInReferred() {
+							if (getValue('referred.value') == '1065') {
+						      $j('#referralReason').find(':input').each(function(){
+						        $j(this).removeAttr('disabled');
+						      });
+						    } else {
+						      $j('#referralReason').find(':input').each(function(){
+						        // uncheck everything as disabled fields are not send via forms 
+								// and therefore might lead to confusion if the checkbox is checked, but disabled
+						        $j(this).attr('checked', false);
+						        $j(this).attr('disabled', 'disabled');
+						      });
+						    }
+						}
 						$j(function() {
 							// couldn't get HFE support for change events of radio buttons to work, DIY
 							//	    getField('referred.value').change(function() {
@@ -269,21 +292,12 @@
 							//	    });
 							// still doesn't as it should, but the best I could do...
 							// first, readonly for checkboxes seems not existing in HTML, 
-							// second: deselecting the YES value by clicking twice on it doesn't invoke a change event
 							$j('#referred').find(':input').each(function(){
 							  $j(this).change(function(){
-							      if (getValue('referred.value') == '1065') {
-							      $j('#referralReason').find(':input').each(function(){
-							        $j(this).removeAttr('disabled');
-							      });
-							    } else {
-							      $j('#referralReason').find(':input').each(function(){
-							        // uncheck everything as disabled fields are not send via forms 
-									// and therefore might lead to confusion if the checkbox is checked, but disabled
-							        $j(this).attr('checked', false);
-							        $j(this).attr('disabled', 'disabled');
-							      });
-							    }
+								clickOrChangeInReferred();
+							  });
+							  $j(this).click(function(){
+								clickOrChangeInReferred();
 							  });
 							})
 						});

@@ -1,0 +1,97 @@
+<htmlform>
+<!-- Full reference for HTML Forms at http://wiki.openmrs.org/x/kg8z -->
+	<macros>
+		paperFormId = (Fill this in)
+		headerColor =#009d8e
+		fontOnHeaderColor = white
+	</macros>
+
+	<style>
+		.section {
+			border: 1px solid $headerColor;
+			padding: 2px;
+			text-align: left;
+			margin-bottom: 1em;
+		}
+		.sectionHeader {
+			background-color: $headerColor;
+			color: $fontOnHeaderColor;
+			display: block;
+			padding: 2px;
+			font-weight: bold;
+		}
+		table.baseline-aligned td {
+			vertical-align: baseline;
+		}
+	</style>
+
+	<script type="text/javascript">
+		$j(document).ready(function(){
+			// there is no readonly in HTML for select fields, but disabling it will prevent the form from submitting any value
+			// therefore remove every entry except the pre-selected one (which should be already set from a the user profile default location)
+			$j("#encounterLocation select option").not("option:selected").remove();
+		});
+	</script>
+
+	<span style="float:right">v1.0 (26-FEBRUARY 2013)</span>
+
+	<h2>Static Clinic Enrollment Visit</h2>
+
+	<section headerLabel="Patient Demographics (readonly, change here)">
+		<table class="baseline-aligned">
+			<tr>
+				<td>ZL EMR ID:</td>
+				<td>
+					<lookup class="value"
+						complexExpression="#foreach( $patId in $patientIdentifiers.get('ZL EMR ID') ) $patId #end " />
+				</td>
+				<td>Dossier Number:</td>
+				<td>
+					<lookup class="value"
+						complexExpression="#foreach( $patId in $patientIdentifiers.get('Nimewo Dosye') ) $patId #end " />
+				</td>
+			</tr>
+			<tr>
+				<td>Name:</td>
+				<td>
+					<lookup class="value" expression="patient.personName" />
+				</td>
+			</tr>
+			<tr>
+				<td>Lokalitie:</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Gender:</td>
+				<td>
+					<lookup class="value" expression="patient.gender" />
+				</td>
+			</tr>
+		</table>
+	</section>
+
+	<section headerLabel="Enrollment Details">
+		
+		<table class="baseline-aligned">
+			<tr>
+				<td>Enrollment reason:</td>
+				<td><obs conceptId="6760" style="radio"/></td>
+			</tr>
+			<tr>
+				<td>Date:</td>
+				<td><encounterDate id="encounterDate"/></td>
+			</tr>
+			<tr>
+				<td>Static location:</td>
+				<td><encounterLocation id="encounterLocation" default="GlobalProperty:default_location"/></td>
+			</tr>
+			<!-- provider is not relevant here, simply hide it -->
+			<tr style="display:none">
+				<td>Provider:</td>
+				<td><encounterProvider id="encounterProvider" default="4"/></td>
+			</tr>
+		</table>
+	</section>
+
+	<submit />
+</htmlform>
