@@ -50,6 +50,11 @@
 		
 		$j(function() {
 			<includeIf velocityTest="$context.getMode()=='ENTER' ">
+				// a little bit of a pain
+				// editing of the form only works when defaults have been set or javacript is disabled...
+				if (!getSessionDate() &amp;&amp; !getSessionChwName1() &amp;&amp; !getSessionNecName() &amp;&amp; !getSessionLocation()) {
+					window.location.replace("/openmrs/module/haitimobileclinic/dataEntryDefaults.form");
+				}
 				setValue('sessionLocation.value', getSessionLocation());
 				setValue('sessionCoordinates.value', getSessionCoordinates());
 				setValue('sessionNecName.value', getSessionNecName());
@@ -57,7 +62,7 @@
 				setValue('sessionChwName2.value', getSessionChwName2());
 				setValue('sessionChwName3.value', getSessionChwName3());
 				setValue('encounterDate.value', getSessionDate());
-setValue('encounterProvider.value', 3);
+				//setValue('encounterProvider.value', 3);
 			</includeIf> 
 		});
 		
@@ -68,7 +73,7 @@ setValue('encounterProvider.value', 3);
 			$j('#sessionNecName input').attr('readonly', 'true');
 			$j('#sessionLocation input').attr('readonly', 'true');
 			$j('#sessionCoordinates input').attr('readonly', true);
-//			$j('#encounterDate input').attr('readonly', 'true');
+			$j('#encounterDate input').attr('readonly', 'true'); // datepicker still responds to onclick...
 			
 			// there is no readonly in HTML for select fields, but disabling it will prevent the form from submitting any value
 			// therefore remove every entry except the pre-selected one (which should be already set from a the user profile default location)
@@ -84,7 +89,7 @@ setValue('encounterProvider.value', 3);
 
 	<h2>Mobile Clinic Consultation Form</h2>
 
-	<section headerLabel="Patient Demographics (readonly, change here)">
+	<section headerLabel="Patient Demographics (readonly, change under 'Patient Demographics')">
 		<table class="baseline-aligned">
 			<tr>
 				<td>ZL EMR ID:</td>
@@ -117,17 +122,17 @@ setValue('encounterProvider.value', 3);
 		</table>
 	</section>
 
-	<section headerLabel="Clinic Day Details (readonly, change here)">
+	<section headerLabel="Clinic Day Details (readonly, change through 'Set defaults')">
 		<table class="baseline-aligned">
 			<tr>
 				<td>Date:</td>
 				<td><encounterDate id="encounterDate" disallowMultipleEncountersOnDate="warn"/></td>
-				<td>Location:</td>
+				<td>Static location:</td>
 				<td colspan="5"><encounterLocation id="encounterLocation" default="GlobalProperty:default_location"/></td>
 			</tr>
 			<tr>
 				<td>Clinic location:</td>
-				<td><obs conceptId="6767" id="sessionLocation" /></td>
+				<td colspan="3"><obs conceptId="6767" id="sessionLocation" size="65"/></td>
 				<td>GPS coordinates :</td>
 				<td><obs conceptId="6772" id="sessionCoordinates"/></td>
 			</tr>

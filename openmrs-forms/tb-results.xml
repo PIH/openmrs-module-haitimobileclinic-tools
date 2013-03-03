@@ -33,9 +33,9 @@
 		});
 	</script>
 
-	<span style="float:right">v1.0 (26-FEBRUARY 2013)</span>
+	<span style="float:right">v1.0 (28-FEBRUARY 2013)</span>
 
-	<h2>Static Clinic Enrollment Visit</h2>
+	<h2>TB Results and Status</h2>
 
 	<section headerLabel="Patient Demographics (readonly, change under 'Patient Demographics')">
 		<table class="baseline-aligned">
@@ -70,12 +70,24 @@
 		</table>
 	</section>
 
-	<section headerLabel="Enrollment Details">
+	<section headerLabel="TB Details">
 		
 		<table class="baseline-aligned">
 			<tr>
-				<td>Enrollment reason:</td>
-				<td><obs conceptId="6760" style="radio"/></td>
+				<td>Sputum result 1:</td>
+				<td><obs conceptId="6777" style="select"/> <obs conceptId="6783"/></td>
+			</tr>
+			<tr>
+				<td>Sputum result 2:</td>
+				<td><obs conceptId="6778" style="select"/> <obs conceptId="6784"/></td>
+			</tr>
+			<tr>
+				<td>Sputum result 3:</td>
+				<td><obs conceptId="6779" style="select"/> <obs conceptId="6785"/></td>
+			</tr>
+			<tr>
+				<td>Overall TB status:</td>
+				<td><obs conceptId="6782" style="select"/> <obs conceptId="6786"/></td>
 			</tr>
 			<tr>
 				<td>Date:</td>
