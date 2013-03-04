@@ -9,6 +9,7 @@ set OPENMRS_HOME_PARENT=/usr/share/openmrs
 set OPENMRS_HOME=C:\Users\Apzu-Emr-Lisungwi\AppData\Roaming\OpenMRS
 set OPENMRS_HOME_RSYNC=/cygdrive/C/Users/Apzu-Emr-Lisungwi/AppData/Roaming/OpenMRS
 set HOME=%HOMEDRIVE%/%HOMEPATH%
+set TOMCAT_HOME=%OPENMRS_HOME%\apache-tomcat-6.0.36
 
 rem common env stuff ================================================================
 set PATH=%PATH%;"C:\Program Files\MySQL\MySQL Server 5.1\bin";C:\MySQL5\bin
