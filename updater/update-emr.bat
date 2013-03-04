@@ -1,6 +1,7 @@
 @echo OFF
-goto :START
-:START
+
+rem load environment for this particular system
+call server_configs.bat
 
 rem try to update through git
 git pull
