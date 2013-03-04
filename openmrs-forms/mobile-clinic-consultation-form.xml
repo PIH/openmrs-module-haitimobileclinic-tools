@@ -62,7 +62,7 @@
 				setValue('sessionChwName2.value', getSessionChwName2());
 				setValue('sessionChwName3.value', getSessionChwName3());
 				setValue('encounterDate.value', getSessionDate());
-				//setValue('encounterProvider.value', 3);
+				//setValue('encounterProvider.value', 4);
 			</includeIf> 
 		});
 		
@@ -190,7 +190,7 @@
 			<tr>
 				<td>Provider:</td>
 				<td colspan="2">
-					<encounterProvider id="encounterProvider"/>
+					<encounterProvider id="encounterProvider" default="38"/>
 				</td>
 			</tr>
 		</table>
