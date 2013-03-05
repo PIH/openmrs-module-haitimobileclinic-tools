@@ -52,10 +52,10 @@ rd /q /s "%BACKUP-PATH%" 2>NUL
 mkdir "%BACKUP-PATH%"
 
 echo Step 3: Dump database
-mysqldump -u root -proot openmrs > openmrs.sql
+mysqldump -u root -pGot2LuvYa openmrs > openmrs.sql
 
 echo Step 4: Compress and encrypt database
-7za a -proot database-dump.zip openmrs.sql >NUL
+7za a -pGot2LuvYa database-dump.zip openmrs.sql >NUL
 
 echo Step 5: Copy database to flash
 copy database-dump.zip "%BACKUP-PATH%" >NUL
