@@ -10,7 +10,7 @@ rem cls
 
 echo.
 echo backup current database
-mysqldump -u root -proot openmrs > backup\openmrs-%HOSTNAME%.sql"
+mysqldump -u root -pGot2LuvYa openmrs > backup\openmrs-%HOSTNAME%.sql"
 
 echo.
 echo backup current modules
@@ -22,15 +22,15 @@ copy ..\modules\*.omod "%EMR_HOME%\modules"
 
 echo.
 echo update metadata
-mysql -u root -proot openmrs < ..\metadata\dump_addresshierarchy.sql
-mysql -u root -proot openmrs < ..\metadata\dump_concepts.sql
-mysql -u root -proot openmrs < ..\metadata\dump_custom.sql
-mysql -u root -proot openmrs < ..\metadata\dump_forms.sql
-mysql -u root -proot openmrs < ..\metadata\dump_locations.sql
-mysql -u root -proot openmrs < ..\metadata\dump_misc.sql
-mysql -u root -proot openmrs < ..\metadata\dump_reports.sql
-mysql -u root -proot openmrs < ..\metadata\dump_scheduler.sql
-mysql -u root -proot openmrs < ..\metadata\dump_users.sql
+mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_addresshierarchy.sql
+mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_concepts.sql
+mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_custom.sql
+mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_forms.sql
+mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_locations.sql
+mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_misc.sql
+mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_reports.sql
+mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_scheduler.sql
+mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_users.sql
 
 echo.
 echo cleanup tomcat stuff
