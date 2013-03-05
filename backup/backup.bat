@@ -74,7 +74,7 @@ del openmrs.sql
 del database-dump.zip
 
 echo Step 7: Copy runtime environment to flash
-xcopy /e /c /q /y "%EMR_HOME%" "%BACKUP-PATH%" >NUL
+xcopy /e /c /q /y /h "%EMR_HOME%" "%BACKUP-PATH%" >NUL
 
 echo.
 echo Backup finished, unmount and unplug the USB flash drive now.
