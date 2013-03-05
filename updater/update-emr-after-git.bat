@@ -34,6 +34,8 @@ mysql -u root -proot openmrs < ..\metadata\dump_users.sql
 
 echo.
 echo cleanup tomcat stuff
+rem hack to wait for 30 secs to give tomcat time to really shut down
+ping -n 30 127.0.0.1 >nul
 rd /q /s "%TOMCAT_HOME%\work\"
 mkdir "%TOMCAT_HOME%\work\"
 rd /q /s "%TOMCAT_HOME%\temp\"
