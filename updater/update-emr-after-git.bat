@@ -14,11 +14,11 @@ mysqldump -u root -proot openmrs > backup\openmrs-%HOSTNAME%.sql"
 
 echo.
 echo backup current modules
-move "%OPENMRS_HOME%\modules\*.omod" backup\
+move "%EMR_HOME%\modules\*.omod" backup\
 
 echo.
 echo update modules
-copy ..\modules\*.omod "%OPENMRS_HOME%\modules"
+copy ..\modules\*.omod "%EMR_HOME%\modules"
 
 echo.
 echo update metadata
