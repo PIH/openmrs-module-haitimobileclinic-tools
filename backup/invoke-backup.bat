@@ -5,11 +5,12 @@ set HOSTNAME=%COMPUTERNAME%
 set BACKUP-DIR=emr-backup-%HOSTNAME%
 set EMR_HOME=C:\Documents and Settings\Administrator\Application Data\OpenMRS
 set TOMCAT_HOME=%EMR_HOME%\apache-tomcat-6.0.36
+set TIMESTAMP=%DATE:~10,4%-%DATE:~4,2%-%DATE:~7,2%-%TIME:~0,2%-%TIME:~3,2%-%TIME:~6,2%
 
 echo.
 echo Starting EMR backup. Please connect USB flash drive.
 set /p BACKUP-DRIVE="Enter drive letter of USB flash drive: " %=%
-set BACKUP-PATH=%BACKUP-DRIVE%:\%BACKUP-DIR%
+set BACKUP-PATH=%BACKUP-DRIVE%:\%BACKUP-DIR%\%TIMESTAMP%
 
 IF exist %BACKUP-DRIVE%:\ goto BACKUP
 
@@ -46,6 +47,7 @@ cls
 echo Step 1: Stop OpenMRS localhost
 
 echo Step 2: Delete old backups
+mkdir %BACKUP-DRIVE%:\%BACKUP-DIR%
 rd /q /s "%BACKUP-PATH%" 2>NUL
 mkdir "%BACKUP-PATH%"
 
