@@ -33,6 +33,10 @@ mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_scheduler.sql
 mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_users.sql
 
 echo.
+echo update report config
+copy ..\metadata\openmrs_poc_config.xml "%EMR_HOME%"
+
+echo.
 echo cleanup tomcat stuff
 rem hack to wait for 30 secs to give tomcat time to really shut down
 ping -n 30 127.0.0.1 >nul

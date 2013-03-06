@@ -1,0 +1,92 @@
+<POCConfiguration>
+	<ReportCategories name="categories">
+		<ReportCategory name="haitimobileclinic.reports.programOverview.category">
+			<Reports name="reports">
+				<Report>
+					<name>Registration Overview Report</name>
+					<reportId>24a1b0e0-5c66-4c26-9757-f60a2d7ced15</reportId>
+					<url>module/haitimobileclinic/reports/overviewReport.form?</url>
+					<label>Registration Overview Report</label>
+					<messageId>haitimobileclinic.reports.overviewReport.title</messageId>
+					<outputFormat>excel</outputFormat>
+				</Report>
+				<Report>
+					<name>MSPP Monthly health services report</name>
+					<reportId>dc913921-99ec-4ccb-8d36-f575df3c319c</reportId>
+					<url>module/haitimobileclinic/workflow/reportingTask.form?reportId=dc913921-99ec-4ccb-8d36-f575df3c319c
+					</url>
+					<label>MSPP Monthly health services report</label>
+					<messageId>haitimobileclinic.reports.msppHealthServicesReport.title</messageId>
+					<outputFormat>excel</outputFormat>
+				</Report>
+				<Report>
+					<name>MSPP Notifiable diseases</name>
+					<reportId>60a3de2e-ef95-42a1-b937-68be21c3bf50</reportId>
+					<url>module/haitimobileclinic/workflow/reportingTask.form?reportId=60a3de2e-ef95-42a1-b937-68be21c3bf50
+					</url>
+					<label>MSPP Notifiable diseases</label>
+					<messageId>haitimobileclinic.reports.msppNotifiableDiseases.title</messageId>
+					<outputFormat>excel</outputFormat>
+				</Report>
+			</Reports>	
+		</ReportCategory>	
+		<ReportCategory name="haitimobileclinic.reports.quality.category">
+			<Reports name="reports">
+				<Report>
+					<name>Missing primary care diagnoses report</name>
+					<reportId>e90652cc-44a8-4359-8a77-b58305155c7f</reportId>
+					<url>module/haitimobileclinic/workflow/reportingTask.form?reportId=e90652cc-44a8-4359-8a77-b58305155c7f
+					</url>
+					<label>Missing primary care diagnoses report</label>
+					<messageId>haitimobileclinic.reports.missingDiagnosesReport.title</messageId>
+					<outputFormat>excel</outputFormat>
+				</Report>
+				<Report>
+					<name>Patient care diagnosis quality report (works)</name>
+					<reportId>f1e504f7-ac84-420e-a8c7-947f55ad578f</reportId>
+					<url>module/haitimobileclinic/workflow/reportingTask.form?reportId=f1e504f7-ac84-420e-a8c7-947f55ad578f
+					</url>
+					<label>Patient care diagnosis quality</label>
+					<messageId>haitimobileclinic.reports.diagnosisQualityReport.title</messageId>
+					<outputFormat>excel</outputFormat>
+				</Report>
+				<Report>
+					<name>Patient registration data quality report (works)</name>
+					<reportId>d8851f73-9c11-4a75-8a9f-a254e725a97e</reportId>
+					<url>module/haitimobileclinic/workflow/reportingTask.form?reportId=d8851f73-9c11-4a75-8a9f-a254e725a97e
+					</url>
+					<label>Registration data quality report</label>
+					<messageId>haitimobileclinic.reports.dataQualityReport.title</messageId>
+					<outputFormat>excel</outputFormat>
+				</Report>
+                <Report>
+                    <name>Implausible diagnosis for age (works, but depends on PIT)</name>
+                    <reportId>81fab0c8-33b6-427c-9fdd-9af84ae1888c</reportId>
+                    <url>module/haitimobileclinic/workflow/reportingTask.form?reportId=81fab0c8-33b6-427c-9fdd-9af84ae1888c
+                    </url>
+                    <label>Implausible diagnosis for age</label>
+                    <messageId>haitimobileclinic.reports.implausibleDiagnosis.title</messageId>
+                    <outputFormat>excel</outputFormat>
+                </Report>
+                <Report>
+                    <name>Notifiable disease validation (works, but depends on PIT)</name>
+                    <reportId>87321e35-442e-43e7-9c67-398815eb9135</reportId>
+                    <url>module/haitimobileclinic/workflow/reportingTask.form?reportId=87321e35-442e-43e7-9c67-398815eb9135
+                    </url>
+                    <label>Notifiable disease validation</label>
+                    <messageId>haitimobileclinic.reports.notifiableDiseaseValidation.title</messageId>
+                    <outputFormat>excel</outputFormat>
+                </Report>
+                <Report>
+                    <name>LQAS 25 diagnosis (works, but PIT not yet implemented)</name>
+                    <reportId>d79c5fec-ca07-42a6-8d43-77eeec10ea3e</reportId>
+                    <url>module/haitimobileclinic/workflow/reportingTask.form?reportId=d79c5fec-ca07-42a6-8d43-77eeec10ea3e
+                    </url>
+                    <label>LQAS 25 diagnosis</label>
+                    <messageId>haitimobileclinic.reports.LQAS25.title</messageId>
+                    <outputFormat>excel</outputFormat>
+                </Report>
+			</Reports>	
+		</ReportCategory>	
+	</ReportCategories>
+</POCConfiguration>
