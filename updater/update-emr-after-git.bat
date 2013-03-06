@@ -21,7 +21,7 @@ echo update modules
 copy ..\modules\*.omod "%EMR_HOME%\modules"
 
 echo.
-echo update metadata
+echo update metadata which does not change (and therefore can be overwritten)
 mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_addresshierarchy.sql
 mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_concepts.sql
 mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_custom.sql
@@ -30,7 +30,11 @@ mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_locations.sql
 mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_misc.sql
 mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_reports.sql
 mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_scheduler.sql
-mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_users.sql
+mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_roles.sql
+
+echo.
+echo update metadata which can be extended (and therefore should not be overwritten)
+mysql -u root -pGot2LuvYa openmrs < ..\metadata\default_providers_and_users.sql
 
 echo.
 echo update report config
