@@ -44,7 +44,7 @@ CREATE TABLE `scheduler_task_config` (
   KEY `scheduler_creator` (`created_by`),
   CONSTRAINT `scheduler_changer` FOREIGN KEY (`changed_by`) REFERENCES `users` (`user_id`),
   CONSTRAINT `scheduler_creator` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,7 +53,7 @@ CREATE TABLE `scheduler_task_config` (
 
 LOCK TABLES `scheduler_task_config` WRITE;
 /*!40000 ALTER TABLE `scheduler_task_config` DISABLE KEYS */;
-INSERT INTO `scheduler_task_config` VALUES (1,'Update Concept Index','Iterates through the concept dictionary, re-creating the concept index (which are used for searcing). This task is started when using the \'Update Concept Index Storage\' page and no range is given.  This task stops itself when one iteration has completed.','org.openmrs.scheduler.tasks.ConceptIndexUpdateTask',NULL,NULL,0,0,0,1,'2005-01-01 00:00:00',2,'2013-02-12 23:13:35',NULL,'7c75911e-0310-11e0-8222-18a905e044dc'),(2,'Auto Close Visits Task','Stops all active visits that match the visit type(s) specified by the value of the global property \'visits.autoCloseVisitType\'','org.openmrs.scheduler.tasks.AutoCloseVisitsTask','2011-11-28 23:59:59','MM/dd/yyyy HH:mm:ss',86400,0,0,1,'2013-02-05 08:48:28',NULL,NULL,NULL,'8c17b376-1a2b-11e1-a51a-00248140a5eb'),(3,'Initialize Logic Rule Providers',NULL,'org.openmrs.logic.task.InitializeLogicRuleProvidersTask','2013-03-04 12:47:38',NULL,1999999999,0,1,2,'2013-02-05 08:49:00',2,'2013-03-04 12:47:42','2013-03-04 12:47:41','c0dd698c-1850-469a-8c2f-c3816ccd27e4');
+INSERT INTO `scheduler_task_config` VALUES (1,'Update Concept Index','Iterates through the concept dictionary, re-creating the concept index (which are used for searcing). This task is started when using the \'Update Concept Index Storage\' page and no range is given.  This task stops itself when one iteration has completed.','org.openmrs.scheduler.tasks.ConceptIndexUpdateTask',NULL,NULL,0,0,0,1,'2005-01-01 00:00:00',2,'2013-02-12 23:13:35',NULL,'7c75911e-0310-11e0-8222-18a905e044dc'),(2,'Auto Close Visits Task','Stops all active visits that match the visit type(s) specified by the value of the global property \'visits.autoCloseVisitType\'','org.openmrs.scheduler.tasks.AutoCloseVisitsTask','2011-11-28 23:59:59','MM/dd/yyyy HH:mm:ss',86400,0,0,1,'2013-02-05 08:48:28',NULL,NULL,NULL,'8c17b376-1a2b-11e1-a51a-00248140a5eb'),(3,'Initialize Logic Rule Providers',NULL,'org.openmrs.logic.task.InitializeLogicRuleProvidersTask','2013-03-06 16:05:36',NULL,1999999999,0,1,2,'2013-02-05 08:49:00',2,'2013-03-06 16:05:37','2013-03-06 16:05:37','c0dd698c-1850-469a-8c2f-c3816ccd27e4');
 /*!40000 ALTER TABLE `scheduler_task_config` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -93,4 +93,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-03-04 16:39:42
+-- Dump completed on 2013-03-07  8:27:32
