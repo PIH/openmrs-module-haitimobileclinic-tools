@@ -26,6 +26,7 @@ mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_addresshierarchy.sql
 mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_concepts.sql
 mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_custom.sql
 mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_forms.sql
+mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_identifiers.sql
 mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_locations.sql
 mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_misc.sql
 mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_reports.sql

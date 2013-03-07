@@ -10,7 +10,7 @@ mysqldump -u $USER -p$PASSWD $OPENMRS -r dump_concepts.sql --tables concept conc
 
 mysqldump -u $USER -p$PASSWD $OPENMRS -r dump_locations.sql --tables location location_attribute location_attribute_type location_tag location_tag_map
 
-mysqldump -u $USER -p$PASSWD $OPENMRS -r dump_misc.sql --tables patient_identifier_type person_attribute_type program program_workflow program_workflow_state encounter_type order_type relationship_type provider_attribute_type provider_attribute reporting_report_design reporting_report_design_resource serialized_object visit_attribute_type visit_type role role_role role_privilege privilege 
+mysqldump -u $USER -p$PASSWD $OPENMRS -r dump_misc.sql --tables person_attribute_type program program_workflow program_workflow_state encounter_type order_type relationship_type provider_attribute_type provider_attribute reporting_report_design reporting_report_design_resource serialized_object visit_attribute_type visit_type role role_role role_privilege privilege 
 
 mysqldump -u $USER -p$PASSWD $OPENMRS -r dump_reports.sql --tables reporting_report_design reporting_report_design_resource serialized_object
 
@@ -20,4 +20,4 @@ mysqldump -u $USER -p$PASSWD $OPENMRS -r dump_scheduler.sql --tables scheduler_t
 
 mysqldump -u $USER -p$PASSWD $OPENMRS -r dump_forms.sql --tables form htmlformentry_html_form
 
-#mysqldump -u $USER -p$PASSWD $OPENMRS -r /tmp/dump_idgen.sql --tables idgen_auto_generation_option idgen_id_pool idgen_identifier_source idgen_log_entry idgen_pooled_identifier idgen_remote_source idgen_reserved_identifier idgen_seq_id_gen
+mysqldump -u $USER -p$PASSWD $OPENMRS -r dump_identifiers.sql --tables patient_identifier_type idgen_auto_generation_option idgen_id_pool idgen_identifier_source idgen_pooled_identifier idgen_remote_source idgen_reserved_identifier
