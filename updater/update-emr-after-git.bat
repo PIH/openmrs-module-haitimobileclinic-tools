@@ -41,6 +41,10 @@ echo update report config
 copy ..\metadata\openmrs_poc_config.xml "%EMR_HOME%"
 
 echo.
+echo update openmrs.war
+copy ..\webapp\openmrs.war "%TOMCAT_HOME%\webapps"
+
+echo.
 echo cleanup tomcat stuff
 rem hack to wait for 30 secs to give tomcat time to really shut down
 ping -n 30 127.0.0.1 >nul
