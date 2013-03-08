@@ -9,7 +9,7 @@ INSERT INTO `users` VALUES
 (4,'4-2','beddy','becefdf0d1d1a6f14d9268f3902661992c6f58b4ecd70510607d7cdb44c43cb48d10a5e5038a39a89d3bc5ddd79b1162fcd8da1d28e57c1d5d745cf681e5faca','ad415e996777361dcacc824b9f2c4f6b1e3b8903285128436ebdc7db526449f9ed8ce1b1bceaed7e65b00dc77f11574e6ec814016a8234a13a53f1191aabacc6',NULL,NULL,1,'2013-03-06 13:44:11',1,'2013-03-06 13:44:11',4,0,NULL,NULL,NULL,'4bbbff6b-fc9a-4e1f-b70e-ee334a284bca'),
 (5,'5-9','unknown','7af4cd7c6e934721f1212ca028e374629ae694ed7983bff4e1a1f1a3064bebf14b8a4167acc8237eb4d036925ea51cc59b25a137b167879ced1c21a8d1bfa11d','efce174636e6ebe06382291f2df62d4958a5ba821ef7f43ae674ea32d5ed46657114b5543be9fbbce7afaf3db9c0a001732cbcabbaa7df6cd4ab9c0d5469a456',NULL,NULL,1,'2013-03-06 13:47:05',1,'2013-03-06 13:47:05',5,0,NULL,NULL,NULL,'f38e7032-229f-4e9a-91bb-70df547d04ce');
 
-INSERT INTO `user_role` VALUES /*(1,'System Developer'),*/(3,'System Developer'),(3,'Mobile Clinic Admin User'),(3,'Mobile Clinic Application User'),(4,'System Developer'),(4,'Mobile Clinic Admin User'),(4,'Mobile Clinic Application User'),(5,'Provider');
+INSERT INTO `user_role` VALUES /*(1,'System Developer'),(3,'System Developer'),*/(3,'Mobile Clinic Admin User'),(3,'Mobile Clinic Application User'),/*(4,'System Developer'),*/(4,'Mobile Clinic Admin User'),(4,'Mobile Clinic Application User'),(5,'Provider');
 
 delete from user_role where user_id=1 and role='Provider';
 

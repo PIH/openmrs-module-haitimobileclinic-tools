@@ -7,9 +7,13 @@ set TOMCAT_HOME=%EMR_HOME%\apache-tomcat-6.0.36
 echo.
 echo Starting EMR restore.
 echo.
-echo THIS WILL OVERWRITE AN EXISTING INSTALLATION AND ITS DATA
+echo THIS WILL OVERWRITE AN EXISTING INSTALLATION AND ITS DATA!
 echo.
 echo Make sure that you really want to restore and replace everything.
+echo And ensure that this script is run directly from the flash drive
+echo containing the backup with the matching data from the particular 
+echo clinic. Don't run this script from the OpenMRS installation dir
+echo on drive C.
 echo.
 pause
 
