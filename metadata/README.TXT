@@ -26,5 +26,6 @@ delete from encounter_provider;
 delete from encounter;
 delete from patient where patient_id in (select patient_id from patient_ids);
 delete from person where person_id in (select patient_id from patient_ids);
+DROP TABLE patient_ids;
 
 
