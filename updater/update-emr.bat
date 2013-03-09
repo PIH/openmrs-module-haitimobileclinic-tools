@@ -1,5 +1,12 @@
 @echo OFF
 
+echo.
+echo Updating the current OpenMRS installation. Internet connection is required.
+echo.
+echo Only run this on request!
+echo.
+pause
+
 set HOSTNAME=%COMPUTERNAME%
 set BACKUP-DIR=emr-backup-%HOSTNAME%
 set EMR_HOME=C:\Users\Informatics\AppData\Roaming\OpenMRS
