@@ -62,6 +62,8 @@ echo Step 5: Copy database to flash
 copy database-dump.zip "%BACKUP-PATH%" >NUL
 
 echo Step 6: Cleanup
+rem hack to wait for 30 secs to give tomcat time to really shut down
+ping -n 30 127.0.0.1 >nul
 rem Apache temp stuff, dump files, ...
 rd /q /s "%TOMCAT_HOME%\temp" 2>NUL
 mkdir "%TOMCAT_HOME%\temp"
