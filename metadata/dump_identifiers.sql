@@ -146,9 +146,9 @@ CREATE TABLE `idgen_identifier_source` (
   KEY `creator for idgen_identifier_source` (`creator`),
   KEY `changed_by for idgen_identifier_source` (`changed_by`),
   KEY `retired_by for idgen_identifier_source` (`retired_by`),
-  CONSTRAINT `identifier_type for idgen_identifier_source` FOREIGN KEY (`identifier_type`) REFERENCES `patient_identifier_type` (`patient_identifier_type_id`),
-  CONSTRAINT `creator for idgen_identifier_source` FOREIGN KEY (`creator`) REFERENCES `users` (`user_id`),
   CONSTRAINT `changed_by for idgen_identifier_source` FOREIGN KEY (`changed_by`) REFERENCES `users` (`user_id`),
+  CONSTRAINT `creator for idgen_identifier_source` FOREIGN KEY (`creator`) REFERENCES `users` (`user_id`),
+  CONSTRAINT `identifier_type for idgen_identifier_source` FOREIGN KEY (`identifier_type`) REFERENCES `patient_identifier_type` (`patient_identifier_type_id`),
   CONSTRAINT `retired_by for idgen_identifier_source` FOREIGN KEY (`retired_by`) REFERENCES `users` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -159,7 +159,7 @@ CREATE TABLE `idgen_identifier_source` (
 
 LOCK TABLES `idgen_identifier_source` WRITE;
 /*!40000 ALTER TABLE `idgen_identifier_source` DISABLE KEYS */;
-INSERT INTO `idgen_identifier_source` VALUES (1,'22859254-4c0b-405f-9249-d67f3e993919','Mobile Clinic Dossier Number Generator','',14,1,'2013-03-07 13:57:05',3,'2013-03-08 08:43:06',0,NULL,NULL,NULL);
+INSERT INTO `idgen_identifier_source` VALUES (1,'22859254-4c0b-405f-9249-d67f3e993919','Mobile Clinic Dossier Number Generator','',14,1,'2013-03-07 13:57:05',3,'2013-03-11 13:20:46',0,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `idgen_identifier_source` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -252,4 +252,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-03-09 13:55:23
+-- Dump completed on 2013-03-20 16:27:18

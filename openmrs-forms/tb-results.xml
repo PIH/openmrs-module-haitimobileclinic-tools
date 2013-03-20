@@ -1,4 +1,10 @@
 <htmlform>
+<!-- MAKE SURE YOU EDIT THE MOST RECENT VERSION! -->
+<!-- The most recent version is either 
+       - under https://github.com/PIH/openmrs-module-haitimobileclinic-tools/tree/master/openmrs-forms
+       or 
+       - straight in the MySQL dump of the metadata (less preferred, but likely)
+-->
 <!-- Full reference for HTML Forms at http://wiki.openmrs.org/x/kg8z -->
 	<macros>
 		paperFormId = (Fill this in)
@@ -37,32 +43,29 @@
 
 	<h2>TB Results and Status</h2>
 
-	<section headerLabel="Patient Demographics (readonly, change under 'Patient Demographics')">
+	<section headerLabel="Données démographiques du patient">
 		<table class="baseline-aligned">
 			<tr>
-				<td>ZL EMR ID:</td>
+				<td>Dossier #:</td>
 				<td>
 					<lookup class="value"
-						complexExpression="#foreach( $patId in $patientIdentifiers.get('ZL EMR ID') ) $patId #end " />
-				</td>
-				<td>Dossier Number:</td>
-				<td>
-					<lookup class="value"
-						complexExpression="#foreach( $patId in $patientIdentifiers.get('Nimewo Dosye') ) $patId #end " />
+						complexExpression="#foreach( $patId in $patientIdentifiers.get('Mobile Clinic Dossier Number') ) $patId #end " />
 				</td>
 			</tr>
 			<tr>
-				<td>Name:</td>
+				<td>Nom:</td>
 				<td>
 					<lookup class="value" expression="patient.personName" />
 				</td>
 			</tr>
 			<tr>
-				<td>Lokalitie:</td>
-				<td></td>
+				<td>Localité:</td>
+				<td>
+					<lookup complexExpression="#foreach( $addr in $patient.addresses ) $addr.stateProvince, $addr.cityVillage, $addr.address3, $addr.address1    #end"/>
+				</td>
 			</tr>
 			<tr>
-				<td>Gender:</td>
+				<td>Sexe:</td>
 				<td>
 					<lookup class="value" expression="patient.gender" />
 				</td>
@@ -74,19 +77,39 @@
 		
 		<table class="baseline-aligned">
 			<tr>
+				<td>6 years and older</td>
+			</tr>
+			<tr>
+				<td></td>
 				<td>Sputum result 1:</td>
-				<td><obs conceptId="6777" style="select"/> <obs conceptId="6783"/></td>
+				<td><obs conceptId="6777" style="select"/> </td>
+				<td><obs conceptId="6783"/></td>
 			</tr>
 			<tr>
+				<td></td>
 				<td>Sputum result 2:</td>
-				<td><obs conceptId="6778" style="select"/> <obs conceptId="6784"/></td>
+				<td><obs conceptId="6778" style="select"/> </td>
+				<td><obs conceptId="6784"/></td>
 			</tr>
 			<tr>
+				<td></td>
 				<td>Sputum result 3:</td>
-				<td><obs conceptId="6779" style="select"/> <obs conceptId="6785"/></td>
+				<td><obs conceptId="6779" style="select"/> </td>
+				<td><obs conceptId="6785"/></td>
 			</tr>
 			<tr>
-				<td>Overall TB status:</td>
+				<td>Child under 6 years</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>PPD result:</td>
+				<td><obs conceptId="6787" style="select"/> </td>
+				<td><obs conceptId="6788"/></td>
+			</tr>
+		</table>
+		<table class="baseline-aligned">
+			<tr>
+				<td>Confirmative TB status:</td>
 				<td><obs conceptId="6782" style="select"/> <obs conceptId="6786"/></td>
 			</tr>
 			<tr>
@@ -100,7 +123,7 @@
 			<!-- provider is not relevant here, simply hide it -->
 			<tr style="display:none">
 				<td>Provider:</td>
-				<td><encounterProvider id="encounterProvider" default="4"/></td>
+				<td><encounterProvider id="encounterProvider" default="5"/></td>
 			</tr>
 		</table>
 	</section>

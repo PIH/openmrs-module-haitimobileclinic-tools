@@ -1,4 +1,10 @@
 <htmlform>
+<!-- MAKE SURE YOU EDIT THE MOST RECENT VERSION! -->
+<!-- The most recent version is either 
+       - under https://github.com/PIH/openmrs-module-haitimobileclinic-tools/tree/master/openmrs-forms
+       or 
+       - straight in the MySQL dump of the metadata (less preferred, but likely)
+-->
 <!-- Full reference for HTML Forms at http://wiki.openmrs.org/x/kg8z -->
 	<macros>
 		paperFormId = (Fill this in)
@@ -47,6 +53,9 @@
 		function getSessionLocation() {
 		   return "<lookup expression="session.httpSession.getAttribute('sessionLocation')" />";
 		}
+		function getSessionLocationAddressHierarchyId() {
+		   return "<lookup expression="session.httpSession.getAttribute('sessionLocationAddressHierarchyId')" />";
+		}
 		
 		$j(function() {
 			<includeIf velocityTest="$context.getMode()=='ENTER' ">
@@ -56,13 +65,14 @@
 					window.location.replace("/openmrs/module/haitimobileclinic/dataEntryDefaults.form");
 				}
 				setValue('sessionLocation.value', getSessionLocation());
+				setValue('sessionLocationAddressHierarchyId.value', getSessionLocationAddressHierarchyId());
 				setValue('sessionCoordinates.value', getSessionCoordinates());
 				setValue('sessionNecName.value', getSessionNecName());
 				setValue('sessionChwName1.value', getSessionChwName1());
 				setValue('sessionChwName2.value', getSessionChwName2());
 				setValue('sessionChwName3.value', getSessionChwName3());
 				setValue('encounterDate.value', getSessionDate());
-				//setValue('encounterProvider.value', 4);
+				//setValue('encounterProvider.value', 5);
 			</includeIf> 
 		});
 		
@@ -85,74 +95,39 @@
 		});
 	</script>
 
-	<span style="float:right">v1.0 (14-JANUARY 2013)</span>
+	<span style="float:right">v1.5 (13-MAS 2013)</span>
 
-	<h2>Mobile Clinic Consultation Form</h2>
+	<h2>Forme de Consultation pour les Cliniques Mobiles</h2>
 
-	<section headerLabel="Patient Demographics (readonly, change under 'Patient Demographics')">
+	<section headerLabel="Données démographiques du patient">
 		<table class="baseline-aligned">
 			<tr>
-				<td>ZL EMR ID:</td>
+				<td>Dossier #:</td>
 				<td>
 					<lookup class="value"
-						complexExpression="#foreach( $patId in $patientIdentifiers.get('ZL EMR ID') ) $patId #end " />
-				</td>
-				<td>Dossier Number:</td>
-				<td>
-					<lookup class="value"
-						complexExpression="#foreach( $patId in $patientIdentifiers.get('Nimewo Dosye') ) $patId #end " />
+						complexExpression="#foreach( $patId in $patientIdentifiers.get('Mobile Clinic Dossier Number') ) $patId #end " />
 				</td>
 			</tr>
 			<tr>
-				<td>Name:</td>
+				<td>Nom:</td>
 				<td>
 					<lookup class="value" expression="patient.personName" />
 				</td>
 			</tr>
 			<tr>
-				<td>Lokalitie:</td>
-				<td></td>
+				<td>Localité:</td>
+				<td>
+					<lookup complexExpression="#foreach( $addr in $patient.addresses ) $addr.stateProvince, $addr.cityVillage, $addr.address3, $addr.address1    #end"/>
+				</td>
 			</tr>
 			<tr>
-				<td>Gender:</td>
+				<td>Sexe:</td>
 				<td>
 					<lookup class="value" expression="patient.gender" />
 				</td>
 			</tr>
-		</table>
-	</section>
-
-	<section headerLabel="Clinic Day Details (readonly, change through 'Set defaults')">
-		<table class="baseline-aligned">
 			<tr>
-				<td>Date:</td>
-				<td><encounterDate id="encounterDate" disallowMultipleEncountersOnDate="warn"/></td>
-				<td>Static location:</td>
-				<td colspan="5"><encounterLocation id="encounterLocation" default="GlobalProperty:default_location"/></td>
-			</tr>
-			<tr>
-				<td>Clinic location:</td>
-				<td colspan="3"><obs conceptId="6767" id="sessionLocation" size="65"/></td>
-				<td>GPS coordinates :</td>
-				<td><obs conceptId="6772" id="sessionCoordinates"/></td>
-			</tr>
-			<tr>
-				<td>NEC name:</td>
-				<td><obs conceptId="6769" id="sessionNecName"/></td>
-				<td>CHW name 1:</td>
-				<td><obs conceptId="6768" id="sessionChwName1"/></td>
-				<td>CHW name 2:</td>
-				<td><obs conceptId="6770" id="sessionChwName2"/></td>
-				<td>CHW name 3:</td>
-				<td><obs conceptId="6771" id="sessionChwName3"/></td>
-			</tr>
-		</table>
-	</section>
-
-	<section headerLabel="Clinical Impression">
-		<table class="baseline-aligned">
-			<tr>
-				<td>Pregnant (only female):</td>
+				<td>Enceinte (seule femme):</td>
 				<td>
 					<span id="pregnant"><obs conceptId="6744" style="radio"/></span>
 					<includeIf velocityTest="$patient.gender!='F' ">
@@ -166,37 +141,48 @@
 					</includeIf>					
 				</td>
 			</tr>
+		</table>
+	</section>
+
+	<section headerLabel="Détails journée de clinique (readonly, change through 'Set defaults')">
+		<table class="baseline-aligned">
 			<tr>
-				<td>Diagnosis</td>
-				<td>Coded:</td>
-				<td><obs conceptId="6542" /></td>
-				<td>Uncoded:</td>
-				<td><obs conceptId="6543" /></td>
+				<td>Date:</td>
+				<td><encounterDate id="encounterDate" disallowMultipleEncountersOnDate="warn"/></td>
+				<td>Static location:</td>
+				<td colspan="5"><encounterLocation id="encounterLocation" default="GlobalProperty:default_location"/></td>
 			</tr>
 			<tr>
-				<td/>
-				<td/>
-				<td><obs conceptId="6542" /></td>
-				<td/>
-				<td><obs conceptId="6543" /></td>
-			</tr>
-			<tr>
-				<td/>
-				<td/>
-				<td><obs conceptId="6542" /></td>
-				<td/>
-				<td><obs conceptId="6543" /></td>
-			</tr>
-			<tr>
-				<td>Provider:</td>
-				<td colspan="2">
-					<encounterProvider id="encounterProvider" default="38"/>
+				<td>Clinique Localité:</td>
+				<td colspan="3">
+					<obs conceptId="6767" id="sessionLocation" size="65"/>
+					<span style="visibility:hidden"><obs conceptId="6791" id="sessionLocationAddressHierarchyId" /></span>
 				</td>
+				<td>GPS coordonne:</td>
+				<td><obs conceptId="6772" id="sessionCoordinates"/></td>
+			</tr>
+			<tr>
+				<td>NEC nom:</td>
+				<td><obs conceptId="6769" id="sessionNecName"/></td>
+				<td>CHW nom 1:</td>
+				<td><obs conceptId="6768" id="sessionChwName1"/></td>
+				<td>CHW nom 2:</td>
+				<td><obs conceptId="6770" id="sessionChwName2"/></td>
+				<td>CHW nom 3:</td>
+				<td><obs conceptId="6771" id="sessionChwName3"/></td>
 			</tr>
 		</table>
 	</section>
 
-	<section headerLabel="Depistage TB">
+	<section headerLabel="PB">
+		<table class="baseline-aligned">
+			<tr>
+				<td><obs conceptId="6766" labelNameTag="default" style="radio"/> (Enfants de 6 mois à 5 ans)</td>
+			</tr>
+		</table>
+	</section>
+
+	<section headerLabel="Dépistage TB">
 		<table class="baseline-aligned">
 			<tr>
 				<td><obs conceptId="6744" labelNameTag="default" style="radio"/></td>
@@ -216,7 +202,7 @@
 		</table>
 	</section>
 
-	<section headerLabel="Depistage VIH">
+	<section headerLabel="Dépistage VIH">
 		<table class="baseline-aligned">
 			<tr>
 				<td>HIV Test:</td>
@@ -251,7 +237,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>Result, if tested:</td>
+				<td>Si oui, le résultat du test est:</td>
 				<td>
 					<span id="hivResult"><obs conceptId="3753" style="radio"/></span>
 				</td>
@@ -259,19 +245,43 @@
 		</table>
 	</section>
 
-	<section headerLabel="Supplemental questions">
+	<section headerLabel="Diagnostic confirmé">
 		<table class="baseline-aligned">
 			<tr>
-				<td><obs conceptId="6749" labelNameTag="default" style="radio"/></td>
+				<td>Diagnostic</td>
+				<td>Codé:</td>
+				<td><obs conceptId="6542" /></td>
+				<td>En clair:</td>
+				<td><obs conceptId="6543" /></td>
 			</tr>
 			<tr>
-				<td><obs conceptId="6766" labelNameTag="default" style="radio"/> (for children under age 6)</td>
+				<td/>
+				<td/>
+				<td><obs conceptId="6542" /></td>
+				<td/>
+				<td><obs conceptId="6543" /></td>
+			</tr>
+			<tr>
+				<td/>
+				<td/>
+				<td><obs conceptId="6542" /></td>
+				<td/>
+				<td><obs conceptId="6543" /></td>
+			</tr>
+			<tr>
+				<td>Prestataire:</td>
+				<td colspan="2">
+					<encounterProvider id="encounterProvider" default="5"/>
+				</td>
 			</tr>
 		</table>
 	</section>
 
-	<section headerLabel="Referral">
+	<section headerLabel="Référence">
 		<table class="baseline-aligned">
+			<tr>
+				<td><obs conceptId="6749" labelNameTag="default" style="radio"/></td>
+			</tr>
 			<tr>
 				<td>
 					<obs id="referred" conceptId="6750" labelNameTag="default" style="radio"/>
@@ -320,6 +330,8 @@
 						<obs conceptId="6760" style="checkbox" answerConceptId="6756" />
 						<obs conceptId="6760" style="checkbox" answerConceptId="6757" />
 						<obs conceptId="6760" style="checkbox" answerConceptId="6758" />
+						<obs conceptId="6760" style="checkbox" answerConceptId="6792" />
+						<obs conceptId="6760" style="checkbox" answerConceptId="6793" />
 						<obs conceptId="6760" style="checkbox" answerConceptId="6759" />
 					</span>
 				</td>

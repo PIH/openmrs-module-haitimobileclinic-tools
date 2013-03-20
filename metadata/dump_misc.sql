@@ -425,9 +425,9 @@ CREATE TABLE `reporting_report_design` (
   KEY `changed_by for reporting_report_design` (`changed_by`),
   KEY `retired_by for reporting_report_design` (`retired_by`),
   KEY `report_definition_uuid for reporting_report_design` (`report_definition_uuid`),
-  CONSTRAINT `report_definition_uuid for reporting_report_design` FOREIGN KEY (`report_definition_uuid`) REFERENCES `serialized_object` (`uuid`),
   CONSTRAINT `changed_by for reporting_report_design` FOREIGN KEY (`changed_by`) REFERENCES `users` (`user_id`),
   CONSTRAINT `creator for reporting_report_design` FOREIGN KEY (`creator`) REFERENCES `users` (`user_id`),
+  CONSTRAINT `report_definition_uuid for reporting_report_design` FOREIGN KEY (`report_definition_uuid`) REFERENCES `serialized_object` (`uuid`),
   CONSTRAINT `retired_by for reporting_report_design` FOREIGN KEY (`retired_by`) REFERENCES `users` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -734,4 +734,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-03-09 13:55:23
+-- Dump completed on 2013-03-20 16:27:17
