@@ -129,7 +129,7 @@
 			<tr>
 				<td>Enceinte (seule femme):</td>
 				<td>
-					<span id="pregnant"><obs conceptId="6744" style="radio"/></span>
+					<span id="pregnant"><obs conceptId="6761" style="radio"/></span>
 					<includeIf velocityTest="$patient.gender!='F' ">
 						<script>
 							$j(function() {
@@ -269,7 +269,7 @@
 				<td><obs conceptId="6543" /></td>
 			</tr>
 			<tr>
-				<td>Prestataire:</td>
+				<td>Provider:</td>
 				<td colspan="2">
 					<encounterProvider id="encounterProvider" default="5"/>
 				</td>
@@ -280,9 +280,6 @@
 	<section headerLabel="Référence">
 		<table class="baseline-aligned">
 			<tr>
-				<td><obs conceptId="6749" labelNameTag="default" style="radio"/></td>
-			</tr>
-			<tr>
 				<td>
 					<obs id="referred" conceptId="6750" labelNameTag="default" style="radio"/>
 					<script>
@@ -291,10 +288,24 @@
 						      $j('#referralReason').find(':input').each(function(){
 						        $j(this).removeAttr('disabled');
 						      });
+						      $j('#referralDestination').find(':input').each(function(){
+						        $j(this).removeAttr('disabled');
+						      });
+						      $j('#emergencyTransport').find(':input').each(function(){
+						        $j(this).removeAttr('disabled');
+						      });
 						    } else {
 						      $j('#referralReason').find(':input').each(function(){
 						        // uncheck everything as disabled fields are not send via forms 
 								// and therefore might lead to confusion if the checkbox is checked, but disabled
+						        $j(this).attr('checked', false);
+						        $j(this).attr('disabled', 'disabled');
+						      });
+						      $j('#referralDestination').find(':input').each(function(){
+							$j(this).val("");
+						        $j(this).attr('disabled', 'disabled');
+						      });
+						      $j('#emergencyTransport').find(':input').each(function(){
 						        $j(this).attr('checked', false);
 						        $j(this).attr('disabled', 'disabled');
 						      });
@@ -317,6 +328,20 @@
 							})
 						});
 					</script>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span id='referralDestination'>
+						<obs conceptId="6794" labelNameTag="default" style="location"/>
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span id='emergencyTransport'>
+						<obs conceptId="6749" labelNameTag="default" style="radio"/>
+					</span>
 				</td>
 			</tr>
 			<tr>
