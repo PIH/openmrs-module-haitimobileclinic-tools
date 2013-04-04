@@ -47,8 +47,11 @@
 		function getSessionChwName3() {
 		   return "<lookup expression="session.httpSession.getAttribute('sessionChwName3')" />";
 		}
-		function getSessionNecName() {
-		   return "<lookup expression="session.httpSession.getAttribute('sessionNecName')" />";
+		function getSessionNecName1() {
+		   return "<lookup expression="session.httpSession.getAttribute('sessionNecName1')" />";
+		}
+		function getSessionNecName2() {
+		   return "<lookup expression="session.httpSession.getAttribute('sessionNecName2')" />";
 		}
 		function getSessionLocation() {
 		   return "<lookup expression="session.httpSession.getAttribute('sessionLocation')" />";
@@ -61,13 +64,14 @@
 			<includeIf velocityTest="$context.getMode()=='ENTER' ">
 				// a little bit of a pain
 				// editing of the form only works when defaults have been set or javacript is disabled...
-				if (!getSessionDate() &amp;&amp; !getSessionChwName1() &amp;&amp; !getSessionNecName() &amp;&amp; !getSessionLocation()) {
+				if (!getSessionDate() &amp;&amp; !getSessionLocation()) {
 					window.location.replace("/openmrs/module/haitimobileclinic/dataEntryDefaults.form");
 				}
 				setValue('sessionLocation.value', getSessionLocation());
 				setValue('sessionLocationAddressHierarchyId.value', getSessionLocationAddressHierarchyId());
 				setValue('sessionCoordinates.value', getSessionCoordinates());
-				setValue('sessionNecName.value', getSessionNecName());
+				setValue('sessionNecName1.value', getSessionNecName1());
+				setValue('sessionNecName2.value', getSessionNecName2());
 				setValue('sessionChwName1.value', getSessionChwName1());
 				setValue('sessionChwName2.value', getSessionChwName2());
 				setValue('sessionChwName3.value', getSessionChwName3());
@@ -80,7 +84,8 @@
 			$j('#sessionChwName1 input').attr('readonly', 'true');
 			$j('#sessionChwName2 input').attr('readonly', 'true');
 			$j('#sessionChwName3 input').attr('readonly', 'true');
-			$j('#sessionNecName input').attr('readonly', 'true');
+			$j('#sessionNecName1 input').attr('readonly', 'true');
+			$j('#sessionNecName2 input').attr('readonly', 'true');
 			$j('#sessionLocation input').attr('readonly', 'true');
 			$j('#sessionCoordinates input').attr('readonly', true);
 			$j('#encounterDate input').attr('readonly', 'true'); // datepicker still responds to onclick...
@@ -162,12 +167,16 @@
 				<td><obs conceptId="6772" id="sessionCoordinates"/></td>
 			</tr>
 			<tr>
-				<td>NEC nom:</td>
-				<td><obs conceptId="6769" id="sessionNecName"/></td>
+				<td>NEC nom 1:</td>
+				<td><obs conceptId="6769" id="sessionNecName1"/></td>
 				<td>CHW nom 1:</td>
 				<td><obs conceptId="6768" id="sessionChwName1"/></td>
 				<td>CHW nom 2:</td>
 				<td><obs conceptId="6770" id="sessionChwName2"/></td>
+			</tr>
+			<tr>
+				<td>NEC nom 2:</td>
+				<td><obs conceptId="6795" id="sessionNecName2"/></td>
 				<td>CHW nom 3:</td>
 				<td><obs conceptId="6771" id="sessionChwName3"/></td>
 			</tr>
