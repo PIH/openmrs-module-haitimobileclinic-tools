@@ -13,8 +13,7 @@
 				<Report>
 					<name>Mobile Clinic Overview</name>
 					<reportId>49d6f4f3-c6ca-4294-9a8e-c8833bd066f9</reportId>
-					<url>module/haitimobileclinic/workflow/reportingTask.form?reportId=49d6f4f3-c6ca-4294-9a8e-c8833bd066f9
-					</url>
+					<url>module/haitimobileclinic/reports/overviewReport.form?reportId=49d6f4f3-c6ca-4294-9a8e-c8833bd066f9</url>
 					<label>Mobile Clinic Overview</label>
 					<messageId>haitimobileclinic.reports.mobileClinicOverview.title</messageId>
 					<outputFormat>excel</outputFormat>
@@ -66,6 +65,28 @@
 				</Report>
 			</Reports>	
 		</ReportCategory>	
+		<ReportCategory name="haitimobileclinic.reports.export.category">
+			<Reports name="reports">
+				<Report>
+					<name>Coded Primary Diagnoses data export</name>
+					<reportId>278e23a2-d72a-4ea1-b041-0cff871914f0</reportId>
+					<url>module/haitimobileclinic/workflow/reportingTask.form?reportId=278e23a2-d72a-4ea1-b041-0cff871914f0
+					</url>
+					<label>Coded Primary Diagnoses data export</label>
+					<messageId>haitimobileclinic.reports.codedDiagnosesExportReport.title</messageId>
+					<outputFormat>excel</outputFormat>
+				</Report>
+				<Report>
+					<name>Non-coded Primary Diagnoses data export</name>
+					<reportId>f63acc9d-016a-4d60-abea-6fbf471a7b37</reportId>
+					<url>module/haitimobileclinic/workflow/reportingTask.form?reportId=f63acc9d-016a-4d60-abea-6fbf471a7b37
+					</url>
+					<label>Non-coded Primary Diagnoses data export</label>
+					<messageId>haitimobileclinic.reports.noncodedDiagnosesExportReport.title</messageId>
+					<outputFormat>excel</outputFormat>
+				</Report>
+			</Reports>
+		</ReportCategory>
 		<ReportCategory name="haitimobileclinic.reports.quality.category">
 			<Reports name="reports">
 				<Report>
