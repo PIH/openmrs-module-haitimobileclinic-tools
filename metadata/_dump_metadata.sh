@@ -10,7 +10,7 @@ mysqldump -u $USER -p$PASSWD $OPENMRS -r dump_concepts.sql --skip-dump-date --ta
 
 mysqldump -u $USER -p$PASSWD $OPENMRS -r dump_locations.sql --skip-dump-date --tables location location_attribute location_attribute_type location_tag location_tag_map
 
-mysqldump -u $USER -p$PASSWD $OPENMRS -r dump_misc.sql --skip-dump-date --tables person_attribute_type program program_workflow program_workflow_state encounter_type order_type relationship_type provider_attribute_type provider_attribute reporting_report_design reporting_report_design_resource serialized_object visit_attribute_type visit_type role role_role role_privilege privilege 
+mysqldump -u $USER -p$PASSWD $OPENMRS -r dump_misc.sql --skip-dump-date --tables person_attribute_type program program_workflow program_workflow_state encounter_type order_type relationship_type provider_attribute_type provider_attribute visit_attribute_type visit_type role role_role role_privilege privilege 
 
 mysqldump -u $USER -p$PASSWD $OPENMRS -r dump_reports.sql --skip-dump-date --tables reporting_report_design reporting_report_design_resource serialized_object
 
