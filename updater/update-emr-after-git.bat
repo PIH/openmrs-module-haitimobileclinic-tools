@@ -6,7 +6,7 @@ set PWD=%CD%
 cd %TOMCAT_HOME%\bin 2>NUL
 call shutdown.bat
 cd /d %PWD%
-rem cls
+cls
 
 echo.
 echo backup current database
