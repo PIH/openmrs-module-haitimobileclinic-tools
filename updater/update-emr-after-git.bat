@@ -34,7 +34,8 @@ mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_scheduler.sql
 mysql -u root -pGot2LuvYa openmrs < ..\metadata\dump_roles.sql
 
 echo.
-echo update metadata which can/will change on the system (and therefore should not be overwritten/recreated)
+echo update metadata which can/will change on the system 
+echo     (and therefore should not be overwritten/recreated)
 mysql -u root -pGot2LuvYa openmrs < ..\metadata\default_providers_and_users.sql
 mysql -u root -pGot2LuvYa openmrs < ..\metadata\default_idgen_seq.sql
 
