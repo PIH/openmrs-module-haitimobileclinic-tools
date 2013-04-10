@@ -38,8 +38,8 @@
 				</Report>
 				<Report>
 					<name>Patient visit summary</name>
-					<reportId>f7eab1bb-96ad-4b8c-89c1-63d3d4d86651</reportId>
-					<url>module/haitimobileclinic/workflow/reportingTask.form?reportId=f7eab1bb-96ad-4b8c-89c1-63d3d4d86651
+					<reportId>ff637188-9470-49ef-9042-27cdc77f9dca</reportId>
+					<url>module/haitimobileclinic/workflow/reportingTask.form?reportId=ff637188-9470-49ef-9042-27cdc77f9dca
 					</url>
 					<label>Patient visit summary</label>
 					<messageId>haitimobileclinic.reports.patientVisitSummary.title</messageId>
@@ -47,8 +47,8 @@
 				</Report>
 				<Report>
 					<name>Referral report</name>
-					<reportId>52208a5e-0a8d-4d96-a71c-6a2e189e1cef</reportId>
-					<url>module/haitimobileclinic/workflow/reportingTask.form?reportId=52208a5e-0a8d-4d96-a71c-6a2e189e1cef
+					<reportId>e4d65a85-1650-4baa-9da4-3495dcbf5132</reportId>
+					<url>module/haitimobileclinic/workflow/reportingTask.form?reportId=e4d65a85-1650-4baa-9da4-3495dcbf5132
 					</url>
 					<label>Referral report</label>
 					<messageId>haitimobileclinic.reports.referralReport.title</messageId>

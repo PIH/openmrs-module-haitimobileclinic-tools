@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.29, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.5.27, for osx10.6 (i386)
 --
 -- Host: localhost    Database: openmrs
 -- ------------------------------------------------------
--- Server version	5.5.29
+-- Server version	5.5.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
