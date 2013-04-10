@@ -13,7 +13,7 @@
 				<Report>
 					<name>Mobile Clinic Overview</name>
 					<reportId>49d6f4f3-c6ca-4294-9a8e-c8833bd066f9</reportId>
-					<url>module/haitimobileclinic/reports/overviewReport.form?reportId=49d6f4f3-c6ca-4294-9a8e-c8833bd066f9</url>
+					<url>module/haitimobileclinic/workflow/reportingTask.form?reportId=49d6f4f3-c6ca-4294-9a8e-c8833bd066f9</url>
 					<label>Mobile Clinic Overview</label>
 					<messageId>haitimobileclinic.reports.mobileClinicOverview.title</messageId>
 					<outputFormat>excel</outputFormat>
