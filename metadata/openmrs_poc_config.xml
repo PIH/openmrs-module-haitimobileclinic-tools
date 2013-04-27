@@ -39,8 +39,8 @@
 				</Report>
 				<Report>
 					<name>Patient visit summary</name>
-					<reportId>ff637188-9470-49ef-9042-27cdc77f9dca</reportId>
-					<url>module/haitimobileclinic/workflow/reportingTask.form?reportId=ff637188-9470-49ef-9042-27cdc77f9dca
+					<reportId>32cd1234-5ebf-4e3b-8e69-b012cf70cde8</reportId>
+					<url>module/haitimobileclinic/workflow/reportingTask.form?reportId=32cd1234-5ebf-4e3b-8e69-b012cf70cde8
 					</url>
 					<label>Patient visit summary</label>
 					<messageId>haitimobileclinic.reports.patientVisitSummary.title</messageId>
