@@ -1,10 +1,10 @@
 -- all locations (-1)
-call create_provider_for_location('Ralph','Ternier','-1');
-call create_provider_for_location('Kenia','Vissieres','-1');
-call create_provider_for_location('Gregory ','Jerome','-1');
-call create_provider_for_location('Jean Paul','Joseph','-1');
-call create_provider_for_location('Patrick','Ulysse','-1');
-call create_provider_for_location('Daniel','Dure','-1');
+call create_provider_for_location('Ralph','Ternier',-1);
+call create_provider_for_location('Kenia','Vissieres',-1);
+call create_provider_for_location('Gregory ','Jerome',-1);
+call create_provider_for_location('Jean Paul','Joseph',-1);
+call create_provider_for_location('Patrick','Ulysse',-1);
+call create_provider_for_location('Daniel','Dure',-1);
 
 -- Petite Reviere (12)
 call create_provider_for_location('Mathilde','Vergilus',12);
