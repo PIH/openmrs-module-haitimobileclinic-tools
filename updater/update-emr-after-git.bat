@@ -38,6 +38,8 @@ echo update metadata which can/will change on the system
 echo     (and therefore should not be overwritten/recreated)
 mysql -u root -pGot2LuvYa openmrs < ..\metadata\default_providers_and_users.sql
 mysql -u root -pGot2LuvYa openmrs < ..\metadata\default_idgen_seq.sql
+mysql -u root -pGot2LuvYa openmrs < ..\metadata\providers_create_procedure.sql
+mysql -u root -pGot2LuvYa openmrs < ..\metadata\providers_2013_april.sql
 
 echo.
 echo update report config
