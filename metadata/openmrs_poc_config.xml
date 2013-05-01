@@ -108,6 +108,7 @@
 					<messageId>haitimobileclinic.reports.diagnosisQualityReport.title</messageId>
 					<outputFormat>excel</outputFormat>
 				</Report>
+				<!-- 
 				<Report>
 					<name>Patient registration data quality report</name>
 					<reportId>d8851f73-9c11-4a75-8a9f-a254e725a97e</reportId>
@@ -117,6 +118,7 @@
 					<messageId>haitimobileclinic.reports.dataQualityReport.title</messageId>
 					<outputFormat>excel</outputFormat>
 				</Report>
+				-->
                 <Report>
                     <name>Implausible diagnosis for age</name>
                     <reportId>81fab0c8-33b6-427c-9fdd-9af84ae1888c</reportId>
