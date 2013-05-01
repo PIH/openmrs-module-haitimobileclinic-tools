@@ -10,3 +10,6 @@ update user_property set property_value='en_US' where property='defaultLocale' a
 # rename Mobile Clinic Dossier Number to Numero de dossier clinique mobile
 update global_property set property_value = 'Numero de dossier clinique mobile' WHERE property = 'haitimobileclinic.primaryIdentifierType';
 update patient_identifier_type set name = 'Numero de dossier clinique mobile'  where patient_identifier_type_id = 14;
+
+# clean out report history as previously existing reports might have been deleted
+delete from reporting_report_request;
