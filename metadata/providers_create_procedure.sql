@@ -6,7 +6,7 @@
 -- foreign key relations. i couldn't find a better way because person_ids and users_ids are
 -- evolving in different ways on the different laptops.
  
-DROP PROCEDURE create_provider_for_location;
+DROP PROCEDURE IF EXISTS create_provider_for_location;
 
 DELIMITER //
 
