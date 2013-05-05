@@ -50,6 +50,10 @@ echo update openmrs.war
 copy ..\webapp\openmrs.war "%TOMCAT_HOME%\webapps"
 
 echo.
+echo misc patches
+copy ..\patching\catalina.bat "%TOMCAT_HOME%\bin"
+
+echo.
 echo cleanup tomcat stuff
 rem hack to wait for 30 secs to give tomcat time to really shut down
 ping -n 30 127.0.0.1 >nul
