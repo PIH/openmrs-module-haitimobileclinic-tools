@@ -13,6 +13,23 @@ mysqldump -u $USER -p$PASSWD $OPENMRS -r dump_locations.sql --skip-dump-date --t
 mysqldump -u $USER -p$PASSWD $OPENMRS -r dump_misc.sql --skip-dump-date --tables person_attribute_type program program_workflow program_workflow_state encounter_type order_type relationship_type provider_attribute_type provider_attribute visit_attribute_type visit_type role role_role role_privilege privilege 
 
 mysqldump -u $USER -p$PASSWD $OPENMRS -r dump_reports.sql --skip-dump-date --tables reporting_report_design reporting_report_design_resource serialized_object
+grep -l "<changedBy reference=" dump_reports.sql
+
+if [ $? -ne 1 ]; then
+  echo "Looks like we found a <changedBy reference= in serialized_object."
+  echo "Unsure where this came from (and what it might mean), but it seems"
+  echo "that at least the installed production systems don't like this"
+  echo "and break during de-serialization."
+  echo ""
+  echo "Either this is read by someone who has a clue what's going on, or"
+  echo "manually apply this replacement to dump_reports.sql:"
+  echo "  <changedBy reference=\"2\"/>"
+  echo "  -->"
+  echo "  <changedBy id=\"3\" uuid=\"00102b99-320d-47fa-95cb-8bb44908265\"/>"
+  echo ""
+  echo "In any case simply DO NOT continue to use this metadata dump."
+  echo ""
+fi 
 
 mysqldump -u $USER -p$PASSWD $OPENMRS -r dump_roles.sql --skip-dump-date --tables role role_privilege role_role
 
