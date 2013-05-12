@@ -31,6 +31,8 @@ metadata - Reports
 ------------------
 Most of the reports originated from the Lacolline installation and were adapted to the needs of this project. Most used report elements (mainly report definitions and data sets) that are currently used are marked with an _ as a prefix of the name. The other elements remained unchanged and most likely will require some tweaks if there will be the need to make them available as well. Apart from this reports are distributed through the EMR update process as well.
 
+Be aware that in order to invoke the reports from the Point of care Mobile Clinic system, the file openmrs_poc_config.xml needs to go into the OpenMRS home dir.
+
 metadata - HTML Forms
 ---------------------
 The source of the HTML Forms is intended to be kept as separate files in the folder 'openmrs-forms'. However they are not automatically applied during installation/update from there, but taken from the MySQL dump files. As a consequence it might be that the files in the openmrs-forms folder are outdated as it is too easy to forget to manually update the files. Maybe it makes sense to remove them from the filesystem.
