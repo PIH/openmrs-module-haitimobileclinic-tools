@@ -10,7 +10,7 @@ mysqldump -u root -pGot2LuvYa openmrs > "%USERPROFILE%\Desktop\openmrs-%COMPUTER
 del "%USERPROFILE%\Desktop\openmrs-%COMPUTERNAME%.sql"
 
 echo.
-echo Database dump done. echo Take the file openmrs-%COMPUTERNAME%.sql 
+echo Database dump done. Take the file openmrs-%COMPUTERNAME%.zip 
 echo from the Desktop and give it to someone else.
 echo. 
 pause
