@@ -40,6 +40,7 @@ call create_provider_for_location('Johny','Denis',12);
 call create_provider_for_location('Bob Edem','Gaston',12);
 call create_provider_for_location('Wiggens Von','Maurice',12);
 call create_provider_for_location('Frantz Wally','Colvert',12);
+call create_provider_for_location('Jean Berlin','Bernard',12);
 
 -- Belladeres (9)
 call create_provider_for_location('Willer','Lerebours',9);
