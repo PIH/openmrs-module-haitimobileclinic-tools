@@ -17,7 +17,8 @@ set HOME=%~dp0
 set HOSTNAME=%COMPUTERNAME%
 
 rem try to update through git
-git pull
+git fetch --all
+git reset --hard origin/master
 
 rem invoke the initial child server sync
 call update-emr-after-git.bat

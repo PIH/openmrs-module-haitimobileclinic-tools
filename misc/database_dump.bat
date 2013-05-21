@@ -6,7 +6,7 @@ echo Press Ctrl-C to abort or
 pause
 
 mysqldump -u root -pGot2LuvYa openmrs > "%USERPROFILE%\Desktop\openmrs-%COMPUTERNAME%.sql"
-7za a -pGot2LuvYa "%USERPROFILE%\Desktop\openmrs-%COMPUTERNAME%.zip" "%USERPROFILE%\Desktop\openmrs-%COMPUTERNAME%.sql"
+..\backup\7za a -pGot2LuvYa "%USERPROFILE%\Desktop\openmrs-%COMPUTERNAME%.zip" "%USERPROFILE%\Desktop\openmrs-%COMPUTERNAME%.sql"
 del "%USERPROFILE%\Desktop\openmrs-%COMPUTERNAME%.sql"
 
 echo.
