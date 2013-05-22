@@ -16,7 +16,7 @@ set TIMESTAMP=%DATE:~10,4%-%DATE:~4,2%-%DATE:~7,2%-%TIME:~0,2%-%TIME:~3,2%-%TIME
 set HOME=%~dp0
 set HOSTNAME=%COMPUTERNAME%
 
-rem try to update through git
+rem update through git and throw away all local changes
 git fetch --all
 git reset --hard origin/master
 

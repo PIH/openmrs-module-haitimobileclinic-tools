@@ -42,6 +42,11 @@ mysql -u root -pGot2LuvYa openmrs < ..\metadata\providers_create_procedure.sql
 mysql -u root -pGot2LuvYa openmrs < ..\metadata\providers_2013_april.sql
 
 echo.
+echo cleaning up old and invalid data
+rem this one is because the initial delete_all_patients.bat did not remove patient_identifiers
+mysql -u root -pGot2LuvYa openmrs -e "delete from patient_identifier where patient_id not in (select patient_id from patient);"
+
+echo.
 echo update report config
 copy ..\metadata\openmrs_poc_config.xml "%EMR_HOME%"
 
