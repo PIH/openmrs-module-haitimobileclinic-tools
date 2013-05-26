@@ -57,7 +57,7 @@ mysqldump -u root -pGot2LuvYa openmrs > openmrs.sql
 
 echo Step 4: Compress and encrypt database
 7za a -pGot2LuvYa database-dump.zip openmrs.sql >NUL
-del openmrs.sql
+rem del openmrs.sql
 move database-dump.zip "%EMR_HOME%" >NUL
 
 echo Step 5: Cleanup
