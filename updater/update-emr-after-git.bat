@@ -66,6 +66,7 @@ rd /q /s "%TOMCAT_HOME%\work\"
 mkdir "%TOMCAT_HOME%\work\"
 rd /q /s "%TOMCAT_HOME%\temp\"
 mkdir "%TOMCAT_HOME%\temp\" 
+rd /q /s "%TOMCAT_HOME%\webapps\openmrs" 2>NUL
 
 echo.
 echo misc
