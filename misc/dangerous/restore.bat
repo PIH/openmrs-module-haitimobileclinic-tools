@@ -29,6 +29,8 @@ ping -n 30 127.0.0.1 >nul
 
 IF NOT exist "%EMR_HOME%\" goto RESTORE
 
+rem temporary save openmrs-runtime.properties file 
+rem (required because MySQL password for OpenMRS varies between different systems)
 move "%EMR_HOME%\openmrs-runtime.properties" "%TEMP%"
 rd /q /s "%EMR_HOME%"
 
@@ -36,7 +38,7 @@ rd /q /s "%EMR_HOME%"
 echo.
 echo Copying files to hard drive
 mkdir "%EMR_HOME%"
-xcopy /e /c /q /y /h ..\..\*.* "%EMR_HOME%\"
+xcopy /e /c /q /y /h ..\..\..\*.* "%EMR_HOME%\"
 move "%TEMP%\openmrs-runtime.properties" "%EMR_HOME%"
 cd "%EMR_HOME%"
 
